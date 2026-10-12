@@ -1,4 +1,4 @@
-import StudentDetailPage from "./StudentDetailPage";
+import StudentDetailPage from "./pages/dosen/StudentDetailPage";
 
 function AppStudentDetail() {
   return <StudentDetailPage />;
