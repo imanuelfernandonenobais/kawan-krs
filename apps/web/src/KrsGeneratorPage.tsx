@@ -176,7 +176,10 @@ function RecommendationCard({ data }: { data: PackageData }) {
 
       <div className="mt-3 grid grid-cols-3 rounded-xl bg-[#edf3ff] px-3 py-2 text-center">
         <div>
-          <p className="text-[9px] text-[#696d75]">Total Beban</p>
+          <p className="text-[9px] text-[#696d75]">
+            Total Beban
+          </p>
+
           <p
             className={`mt-1 text-[14px] font-bold ${
               data.recommended
@@ -189,14 +192,20 @@ function RecommendationCard({ data }: { data: PackageData }) {
         </div>
 
         <div>
-          <p className="text-[9px] text-[#696d75]">Biaya UKT</p>
+          <p className="text-[9px] text-[#696d75]">
+            Biaya UKT
+          </p>
+
           <p className="mt-1 text-[14px] font-bold">
             {data.biaya}
           </p>
         </div>
 
         <div>
-          <p className="text-[9px] text-[#696d75]">Proyeksi</p>
+          <p className="text-[9px] text-[#696d75]">
+            Proyeksi
+          </p>
+
           <p className="mt-1 text-[14px] font-bold">
             {data.proyeksi}
           </p>
@@ -251,7 +260,7 @@ function KrsGeneratorPage() {
   const [mode, setMode] = useState<1 | 2>(1);
 
   return (
-    <div className="h-screen overflow-hidden bg-[#f6f7fd]">
+    <div className="min-h-screen overflow-y-auto bg-[#f6f7fd]">
       <div
         className="min-h-screen bg-[#f6f7fd] text-[#14213a]"
         style={{ zoom: 0.68 }}
@@ -293,6 +302,7 @@ function KrsGeneratorPage() {
                   <p className="text-[11px] font-bold">
                     Nadya Salsabila
                   </p>
+
                   <p className="text-[8px] text-[#7a7880]">
                     NIM 2106721094
                   </p>
@@ -302,7 +312,7 @@ function KrsGeneratorPage() {
           </div>
         </header>
 
-        <main className="mx-auto max-w-[1440px] px-7 pb-5 pt-5">
+        <main className="mx-auto max-w-[1440px] px-7 pb-8 pt-5">
           {/* JUDUL */}
           <div className="flex items-start justify-between gap-5">
             <div>
@@ -323,19 +333,25 @@ function KrsGeneratorPage() {
             </div>
 
             <div className="flex overflow-hidden rounded-full bg-[#26364b] p-1">
-              <button className="flex items-center gap-2 rounded-full bg-[#a71920] px-4 py-1.5 text-[9px] font-semibold text-white">
+              <button
+                type="button"
+                className="flex items-center gap-2 rounded-full bg-[#a71920] px-4 py-1.5 text-[9px] font-semibold text-white"
+              >
                 <Sparkles size={11} />
                 Rekomendasi Paket KRS
               </button>
 
-              <button className="flex items-center gap-2 px-4 py-1.5 text-[9px] text-white/80">
+              <button
+                type="button"
+                className="flex items-center gap-2 px-4 py-1.5 text-[9px] text-white/80"
+              >
                 <History size={11} />
                 Riwayat Studi
               </button>
             </div>
           </div>
 
-          {/* MAHASISWA */}
+          {/* DATA MAHASISWA */}
           <section className="mt-4 flex items-center justify-between rounded-2xl border bg-white p-4">
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#b58a68] text-sm font-bold text-white">
@@ -409,6 +425,7 @@ function KrsGeneratorPage() {
           {/* MODE */}
           <div className="mx-auto mt-4 flex max-w-[620px] rounded-xl bg-[#dce8fb] p-1">
             <button
+              type="button"
               onClick={() => setMode(1)}
               className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 text-[9px] font-semibold ${
                 mode === 1
@@ -421,6 +438,7 @@ function KrsGeneratorPage() {
             </button>
 
             <button
+              type="button"
               onClick={() => setMode(2)}
               className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 text-[9px] font-semibold ${
                 mode === 2
@@ -458,7 +476,10 @@ function KrsGeneratorPage() {
                   Target Semester:
                 </span>
 
-                <button className="flex min-w-[240px] items-center justify-between rounded-lg bg-[#eff4fc] px-4 py-2 text-[9px]">
+                <button
+                  type="button"
+                  className="flex min-w-[240px] items-center justify-between rounded-lg bg-[#eff4fc] px-4 py-2 text-[9px]"
+                >
                   Semester 8 (Genap 2024/2025)
                   <ChevronDown size={12} />
                 </button>
@@ -528,7 +549,10 @@ function KrsGeneratorPage() {
               </div>
             </div>
 
-            <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-[#95151b] py-2.5 text-[9px] font-semibold text-white">
+            <button
+              type="button"
+              className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-[#95151b] py-2.5 text-[9px] font-semibold text-white"
+            >
               <Zap size={12} fill="currentColor" />
               Generate Rekomendasi Paket KRS
             </button>
