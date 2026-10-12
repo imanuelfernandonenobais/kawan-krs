@@ -145,7 +145,11 @@ const paketC: PackageData = {
 
 const packages = [paketA, paketB, paketC];
 
-function RecommendationCard({ data }: { data: PackageData }) {
+function RecommendationCard({
+  data,
+}: {
+  data: PackageData;
+}) {
   return (
     <div
       className={`relative flex h-full flex-col rounded-2xl bg-white p-5 ${
@@ -196,7 +200,7 @@ function RecommendationCard({ data }: { data: PackageData }) {
             Biaya UKT
           </p>
 
-          <p className="mt-1 text-[14px] font-bold">
+          <p className="mt-1 text-[14px] font-bold text-[#14213a]">
             {data.biaya}
           </p>
         </div>
@@ -206,7 +210,7 @@ function RecommendationCard({ data }: { data: PackageData }) {
             Proyeksi
           </p>
 
-          <p className="mt-1 text-[14px] font-bold">
+          <p className="mt-1 text-[14px] font-bold text-[#14213a]">
             {data.proyeksi}
           </p>
         </div>
@@ -232,7 +236,7 @@ function RecommendationCard({ data }: { data: PackageData }) {
               </p>
             </div>
 
-            <span className="shrink-0 rounded-md bg-[#dceaff] px-2 py-1 text-[8px] font-bold">
+            <span className="shrink-0 rounded-md bg-[#dceaff] px-2 py-1 text-[8px] font-bold text-[#253b59]">
               {course.sks} SKS
             </span>
           </div>
@@ -245,8 +249,8 @@ function RecommendationCard({ data }: { data: PackageData }) {
         type="button"
         className={`mt-3 w-full rounded-lg py-2.5 text-[10px] font-semibold ${
           data.recommended
-            ? "bg-[#98171d] text-white"
-            : "bg-[#dfeaff] text-[#1f2e46]"
+            ? "bg-[#98171d] text-white hover:bg-[#801218]"
+            : "bg-[#dfeaff] text-[#1f2e46] hover:bg-[#d3e1f7]"
         }`}
       >
         Pilih Paket Ini →
@@ -260,10 +264,14 @@ function KrsGeneratorPage() {
   const [mode, setMode] = useState<1 | 2>(1);
 
   return (
-    <div className="min-h-screen overflow-y-auto bg-[#f6f7fd]">
+    <div className="w-full min-h-screen bg-[#f6f7fd]">
       <div
         className="min-h-screen bg-[#f6f7fd] text-[#14213a]"
-        style={{ zoom: 0.68 }}
+        style={{
+          transform: "scale(0.68)",
+          transformOrigin: "top left",
+          width: "147.06%",
+        }}
       >
         {/* HEADER */}
         <header className="border-b border-[#eceef4] bg-white">
@@ -288,10 +296,14 @@ function KrsGeneratorPage() {
                   size={13}
                   className="text-[#9b1d24]"
                 />
+
                 2024/2025 Ganjil
               </div>
 
-              <Bell size={15} className="text-[#98171d]" />
+              <Bell
+                size={15}
+                className="text-[#98171d]"
+              />
 
               <div className="flex items-center gap-3">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#b58a68] text-[10px] font-bold text-white">
@@ -312,12 +324,13 @@ function KrsGeneratorPage() {
           </div>
         </header>
 
-        <main className="mx-auto max-w-[1440px] px-7 pb-8 pt-5">
+        <main className="mx-auto max-w-[1440px] px-7 pb-10 pt-5">
           {/* JUDUL */}
           <div className="flex items-start justify-between gap-5">
             <div>
               <div className="flex items-center gap-2 text-[10px] font-medium text-[#a32930]">
                 <Sparkles size={12} />
+
                 PERENCANAAN STUDI CERDAS BERBASIS AI
               </div>
 
@@ -352,7 +365,7 @@ function KrsGeneratorPage() {
           </div>
 
           {/* DATA MAHASISWA */}
-          <section className="mt-4 flex items-center justify-between rounded-2xl border bg-white p-4">
+          <section className="mt-4 flex items-center justify-between rounded-2xl border border-[#27354a] bg-white p-4">
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#b58a68] text-sm font-bold text-white">
                 NS
@@ -413,6 +426,7 @@ function KrsGeneratorPage() {
 
                 <p className="mt-1 text-[18px] font-bold text-[#b12a30]">
                   24 SKS
+
                   <span className="text-[8px] font-medium">
                     {" "}
                     IPK ≥ 3.50
@@ -434,6 +448,7 @@ function KrsGeneratorPage() {
               }`}
             >
               <SlidersHorizontal size={12} />
+
               Mode 1: Formulir Parameter Studi & Budget
             </button>
 
@@ -447,13 +462,14 @@ function KrsGeneratorPage() {
               }`}
             >
               <MessageCircle size={12} />
+
               Mode 2: Deskripsi & Cerita Minat (AI)
             </button>
           </div>
 
           {/* PARAMETER */}
-          <section className="mt-4 rounded-2xl border bg-white p-5">
-            <div className="flex items-center justify-between border-b pb-3">
+          <section className="mt-4 rounded-2xl border border-[#27354a] bg-white p-5">
+            <div className="flex items-center justify-between border-b border-[#27354a] pb-3">
               <div className="flex items-center gap-3">
                 <SlidersHorizontal
                   size={17}
@@ -481,12 +497,14 @@ function KrsGeneratorPage() {
                   className="flex min-w-[240px] items-center justify-between rounded-lg bg-[#eff4fc] px-4 py-2 text-[9px]"
                 >
                   Semester 8 (Genap 2024/2025)
+
                   <ChevronDown size={12} />
                 </button>
               </div>
             </div>
 
             <div className="mt-4 grid grid-cols-2 gap-7">
+              {/* TARGET SKS */}
               <div>
                 <div className="flex items-end justify-between">
                   <p className="text-[11px] font-bold">
@@ -497,6 +515,7 @@ function KrsGeneratorPage() {
                     <span className="text-[18px] font-bold text-[#a11e24]">
                       {targetSks}
                     </span>
+
                     {" / Max 24 SKS"}
                   </p>
                 </div>
@@ -509,18 +528,25 @@ function KrsGeneratorPage() {
                   onChange={(e) =>
                     setTargetSks(Number(e.target.value))
                   }
-                  className="mt-3 h-1.5 w-full accent-[#a51f25]"
+                  className="mt-3 h-1.5 w-full cursor-pointer accent-[#a51f25]"
                 />
 
                 <div className="mt-1 flex justify-between text-[7px]">
-                  <span>12 SKS (Min. Riset)</span>
-                  <span>18 SKS (Standar Skripsi)</span>
+                  <span>
+                    12 SKS (Min. Riset)
+                  </span>
+
+                  <span>
+                    18 SKS (Standar Skripsi)
+                  </span>
+
                   <span className="font-bold text-[#9c252b]">
                     24 SKS (Maksimal Hak IPK)
                   </span>
                 </div>
               </div>
 
+              {/* BUDGET */}
               <div>
                 <div className="flex justify-between">
                   <p className="text-[11px] font-bold">
@@ -543,23 +569,27 @@ function KrsGeneratorPage() {
                 </div>
 
                 <p className="mt-1 text-[7px] text-[#767178]">
-                  Perkiraan tagihan normal untuk 20 SKS sekitar
-                  Rp 7.500.000.
+                  Perkiraan tagihan normal untuk 20 SKS
+                  sekitar Rp 7.500.000.
                 </p>
               </div>
             </div>
 
             <button
               type="button"
-              className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-[#95151b] py-2.5 text-[9px] font-semibold text-white"
+              className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-[#95151b] py-2.5 text-[9px] font-semibold text-white hover:bg-[#801116]"
             >
-              <Zap size={12} fill="currentColor" />
+              <Zap
+                size={12}
+                fill="currentColor"
+              />
+
               Generate Rekomendasi Paket KRS
             </button>
           </section>
 
-          {/* HASIL */}
-          <section className="mt-4">
+          {/* HASIL REKOMENDASI */}
+          <section className="mt-5">
             <div className="flex items-end justify-between">
               <div>
                 <p className="text-[9px] font-semibold text-[#9d282e]">
@@ -577,7 +607,12 @@ function KrsGeneratorPage() {
               </div>
 
               <p className="text-[8px] text-[#77727a]">
-                ● Terakhir diperbarui: Hari ini, 09:42 WIB
+                <span className="text-[#9b1e24]">
+                  ●
+                </span>
+
+                {" "}
+                Terakhir diperbarui: Hari ini, 09:42 WIB
               </p>
             </div>
 
@@ -590,6 +625,8 @@ function KrsGeneratorPage() {
               ))}
             </div>
           </section>
+
+          <div className="h-16" />
         </main>
       </div>
     </div>
