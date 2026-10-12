@@ -261,7 +261,12 @@ function KrsGeneratorPage() {
   const [mode, setMode] = useState<1 | 2>(1);
 
   return (
-    <div className="min-h-screen bg-[#f6f7fd] text-[#14213a]">
+    return (
+  <div className="h-screen overflow-hidden bg-[#f6f7fd]">
+    <div
+      className="min-h-screen bg-[#f6f7fd] text-[#14213a]"
+      style={{ zoom: 0.78 }}
+    >
       {/* HEADER */}
       <header className="border-b border-[#eceef4] bg-white">
         <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-7">
