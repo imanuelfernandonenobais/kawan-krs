@@ -75,7 +75,7 @@ const paketB: PackageData = {
   id: "B",
   title: "Fokus Karir & Magang Industri",
   description:
-    "Untuk mahasiswa yang ingin mengonversi magang industri dengan beban kuliah teori yang terkendali rapi.",
+    "Untuk mahasiswa yang ingin mengonversi magang industri dengan beban kuliah teori yang terkendali.",
   totalSks: 20,
   biaya: "Rp 7,20 Jt",
   proyeksi: "Juli 2025",
@@ -111,7 +111,7 @@ const paketC: PackageData = {
   id: "C",
   title: "Pengayaan Akademik & Lanjut Studi",
   description:
-    "Persiapan studi master / fast track, fokus pada publikasi ilmiah, jurnal bereputasi Scopus/Sinta.",
+    "Persiapan studi master / fast track, fokus pada publikasi ilmiah dan jurnal bereputasi.",
   totalSks: 16,
   biaya: "Rp 5,85 Jt",
   proyeksi: "Juli 2025",
@@ -145,46 +145,40 @@ const paketC: PackageData = {
 
 const packages = [paketA, paketB, paketC];
 
-function RecommendationCard({
-  data,
-}: {
-  data: PackageData;
-}) {
+function RecommendationCard({ data }: { data: PackageData }) {
   return (
     <div
-      className={`relative flex h-full flex-col rounded-2xl bg-white p-6 ${
+      className={`relative flex h-full flex-col rounded-2xl bg-white p-5 ${
         data.recommended
-          ? "border border-[#b6262c] shadow-[0_0_0_1px_rgba(182,38,44,0.05)]"
+          ? "border border-[#b6262c]"
           : "border border-[#eef0f6]"
       }`}
     >
       {data.recommended && (
-        <div className="absolute -top-4 left-7 rounded-full border border-[#efb4b7] bg-[#ffe1e3] px-5 py-1.5 text-[11px] font-bold tracking-wide text-[#8d1118]">
+        <div className="absolute -top-3 left-6 rounded-full border border-[#efb4b7] bg-[#ffe1e3] px-4 py-1 text-[10px] font-bold text-[#8d1118]">
           ● REKOMENDASI UTAMA • PALING OPTIMAL
         </div>
       )}
 
-      <div className={data.recommended ? "mt-2" : ""}>
-        <p className="text-[11px] font-bold tracking-wider text-[#912027]">
+      <div className={data.recommended ? "mt-1" : ""}>
+        <p className="text-[10px] font-bold text-[#912027]">
           PAKET {data.id}
         </p>
 
-        <h3 className="mt-1 text-[17px] font-bold leading-tight text-[#14213a]">
+        <h3 className="mt-1 text-[16px] font-bold text-[#14213a]">
           {data.title}
         </h3>
 
-        <p className="mt-2 min-h-[42px] text-[11px] leading-relaxed text-[#746f74]">
+        <p className="mt-1 min-h-[30px] text-[10px] leading-relaxed text-[#746f74]">
           {data.description}
         </p>
       </div>
 
-      <div className="mt-4 grid grid-cols-3 rounded-xl bg-[#edf3ff] px-3 py-3 text-center">
+      <div className="mt-3 grid grid-cols-3 rounded-xl bg-[#edf3ff] px-3 py-2 text-center">
         <div>
-          <p className="text-[10px] text-[#696d75]">
-            Total Beban
-          </p>
+          <p className="text-[9px] text-[#696d75]">Total Beban</p>
           <p
-            className={`mt-1 text-[15px] font-bold ${
+            className={`mt-1 text-[14px] font-bold ${
               data.recommended
                 ? "text-[#a51f25]"
                 : "text-[#14213a]"
@@ -195,45 +189,41 @@ function RecommendationCard({
         </div>
 
         <div>
-          <p className="text-[10px] text-[#696d75]">
-            Biaya UKT
-          </p>
-          <p className="mt-1 text-[15px] font-bold text-[#14213a]">
+          <p className="text-[9px] text-[#696d75]">Biaya UKT</p>
+          <p className="mt-1 text-[14px] font-bold">
             {data.biaya}
           </p>
         </div>
 
         <div>
-          <p className="text-[10px] text-[#696d75]">
-            Proyeksi
-          </p>
-          <p className="mt-1 text-[15px] font-bold text-[#14213a]">
+          <p className="text-[9px] text-[#696d75]">Proyeksi</p>
+          <p className="mt-1 text-[14px] font-bold">
             {data.proyeksi}
           </p>
         </div>
       </div>
 
-      <p className="mt-5 text-[10px] font-bold tracking-wide text-[#57545a]">
+      <p className="mt-3 text-[9px] font-bold text-[#57545a]">
         MATA KULIAH TERDAFTAR ({data.courses.length} MK):
       </p>
 
-      <div className="mt-2 space-y-2">
+      <div className="mt-2 space-y-1.5">
         {data.courses.map((course) => (
           <div
             key={`${data.id}-${course.code}`}
-            className="flex items-center justify-between gap-3 rounded-lg bg-[#fafbfe] px-3 py-2.5"
+            className="flex items-center justify-between gap-2 rounded-lg bg-[#fafbfe] px-3 py-1.5"
           >
             <div className="min-w-0">
-              <p className="text-[11px] font-bold text-[#384052]">
+              <p className="text-[10px] font-bold text-[#384052]">
                 {course.code} {course.title}
               </p>
 
-              <p className="mt-0.5 truncate text-[9px] text-[#8b8589]">
+              <p className="truncate text-[8px] text-[#8b8589]">
                 {course.note}
               </p>
             </div>
 
-            <span className="shrink-0 rounded-md bg-[#dceaff] px-2 py-1 text-[9px] font-bold text-[#253b59]">
+            <span className="shrink-0 rounded-md bg-[#dceaff] px-2 py-1 text-[8px] font-bold">
               {course.sks} SKS
             </span>
           </div>
@@ -244,10 +234,10 @@ function RecommendationCard({
 
       <button
         type="button"
-        className={`mt-5 w-full rounded-lg py-3 text-[11px] font-semibold transition ${
+        className={`mt-3 w-full rounded-lg py-2.5 text-[10px] font-semibold ${
           data.recommended
-            ? "bg-[#98171d] text-white hover:bg-[#801218]"
-            : "bg-[#dfeaff] text-[#1f2e46] hover:bg-[#d3e1f7]"
+            ? "bg-[#98171d] text-white"
+            : "bg-[#dfeaff] text-[#1f2e46]"
         }`}
       >
         Pilih Paket Ini →
@@ -261,353 +251,323 @@ function KrsGeneratorPage() {
   const [mode, setMode] = useState<1 | 2>(1);
 
   return (
-    return (
-  <div className="h-screen overflow-hidden bg-[#f6f7fd]">
-    <div
-      className="min-h-screen bg-[#f6f7fd] text-[#14213a]"
-      style={{ zoom: 0.78 }}
-    >
-      {/* HEADER */}
-      <header className="border-b border-[#eceef4] bg-white">
-        <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-7">
-          <div className="flex items-center gap-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#98171d] text-white">
-              <Sparkles size={18} />
-            </div>
-
-            <div className="text-[17px] font-bold text-[#98171d]">
-              KawanKRS
-            </div>
-
-            <span className="rounded-full bg-[#ffe5e6] px-3 py-1 text-[9px] font-bold text-[#9c242a]">
-              MAHASISWA PORTAL
-            </span>
-          </div>
-
-          <div className="flex items-center gap-5">
-            <div className="flex items-center gap-2 rounded-full bg-[#eef3fd] px-4 py-2 text-[12px] font-semibold text-[#485269]">
-              <CalendarDays size={14} className="text-[#9b1d24]" />
-              2024/2025 Ganjil
-            </div>
-
-            <button
-              type="button"
-              className="relative text-[#98171d]"
-            >
-              <Bell size={17} />
-            </button>
-
+    <div className="h-screen overflow-hidden bg-[#f6f7fd]">
+      <div
+        className="min-h-screen bg-[#f6f7fd] text-[#14213a]"
+        style={{ zoom: 0.68 }}
+      >
+        {/* HEADER */}
+        <header className="border-b border-[#eceef4] bg-white">
+          <div className="mx-auto flex h-[58px] max-w-[1440px] items-center justify-between px-7">
             <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#dcb694] to-[#704f3f] text-xs font-bold text-white">
-                NS
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#98171d] text-white">
+                <Sparkles size={16} />
               </div>
 
-              <div className="hidden md:block">
-                <p className="text-[13px] font-bold">
-                  Nadya Salsabila
-                </p>
-                <p className="text-[10px] text-[#7a7880]">
-                  NIM 2106721094
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <main className="mx-auto max-w-[1440px] px-7 pb-12 pt-7">
-        {/* TITLE */}
-        <div className="flex items-start justify-between gap-5">
-          <div>
-            <div className="flex items-center gap-2 text-[12px] font-medium tracking-wide text-[#a32930]">
-              <Sparkles size={14} />
-              PERENCANAAN STUDI CERDAS BERBASIS AI
-            </div>
-
-            <h1 className="mt-3 text-[29px] font-bold tracking-tight text-[#132039]">
-              Generator Paket KRS Cerdas
-            </h1>
-
-            <p className="mt-1 max-w-[510px] text-[11px] leading-relaxed text-[#6e6d75]">
-              Dapatkan kombinasi rekomendasi paket mata kuliah
-              terbaik untuk semester Anda berdasarkan analisis
-              riwayat studi, syarat prasyarat, budget biaya kuliah,
-              dan preferensi target SKS Anda.
-            </p>
-          </div>
-
-          <div className="flex overflow-hidden rounded-full bg-[#26364b] p-1 shadow-md">
-            <button
-              type="button"
-              className="flex items-center gap-2 rounded-full bg-[#a71920] px-5 py-2 text-[11px] font-semibold text-white"
-            >
-              <Sparkles size={13} />
-              Rekomendasi Paket KRS
-            </button>
-
-            <button
-              type="button"
-              className="flex items-center gap-2 px-5 py-2 text-[11px] font-medium text-white/80"
-            >
-              <History size={13} />
-              Riwayat Studi
-            </button>
-          </div>
-        </div>
-
-        {/* STUDENT CARD */}
-        <section className="mt-7 flex flex-col gap-5 rounded-2xl border border-[#f0eff2] bg-white p-6 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex items-center gap-4">
-            <div className="relative">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#f0d2b8] via-[#b08e73] to-[#7a5a45] text-sm font-bold text-white">
-                NS
+              <div className="text-[15px] font-bold text-[#98171d]">
+                KawanKRS
               </div>
 
-              <span className="absolute bottom-0 right-0 h-4 w-4 rounded-full border-2 border-white bg-[#bd2229]" />
-            </div>
-
-            <div>
-              <div className="flex flex-wrap items-center gap-2">
-                <h2 className="text-[15px] font-bold">
-                  Nadya Salsabila
-                </h2>
-
-                <span className="rounded-full bg-[#ffe1e3] px-3 py-1 text-[9px] font-bold text-[#a52a30]">
-                  Mahasiswa Aktif
-                </span>
-              </div>
-
-              <p className="mt-1 text-[11px] leading-relaxed text-[#6e6970]">
-                NIM 2106721094 • S1 Ilmu Komputer •
-                <br />
-                Fakultas Ilmu Komputer UI
-              </p>
-            </div>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-3">
-            <div className="min-w-[170px] rounded-xl bg-[#edf3ff] px-5 py-3">
-              <p className="text-[9px] uppercase tracking-wide text-[#7f828b]">
-                Indeks Prestasi Kumulatif
-              </p>
-
-              <p className="mt-1 text-[20px] font-bold text-[#a31f25]">
-                3.82
-                <span className="ml-1 text-[10px] font-medium text-[#656875]">
-                  / 4.00
-                </span>
-              </p>
-            </div>
-
-            <div className="min-w-[145px] rounded-xl bg-[#edf3ff] px-5 py-3">
-              <p className="text-[9px] uppercase tracking-wide text-[#7f828b]">
-                SKS Telah Lulus
-              </p>
-
-              <p className="mt-1 text-[20px] font-bold">
-                124 / 144
-                <span className="ml-1 text-[9px] font-medium">
-                  SKS
-                </span>
-              </p>
-
-              <p className="text-[9px] font-semibold text-[#a22a31]">
-                86.1% Kurikulum
-              </p>
-            </div>
-
-            <div className="min-w-[145px] rounded-xl bg-[#fff5f3] px-5 py-3">
-              <p className="text-[9px] uppercase tracking-wide text-[#7f828b]">
-                Beban Max Berhak
-              </p>
-
-              <p className="mt-1 text-[20px] font-bold text-[#b12a30]">
-                24 SKS
-                <span className="ml-1 text-[9px] font-medium text-[#7d7374]">
-                  IPK ≥ 3.50
-                </span>
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* MODE SWITCH */}
-        <div className="mx-auto mt-6 flex max-w-[650px] rounded-xl bg-[#dce8fb] p-1">
-          <button
-            type="button"
-            onClick={() => setMode(1)}
-            className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-[11px] font-semibold ${
-              mode === 1
-                ? "bg-white text-[#a1272d] shadow-sm"
-                : "text-[#565f70]"
-            }`}
-          >
-            <SlidersHorizontal size={14} />
-            Mode 1: Formulir Parameter Studi & Budget
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setMode(2)}
-            className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-[11px] font-semibold ${
-              mode === 2
-                ? "bg-white text-[#a1272d] shadow-sm"
-                : "text-[#565f70]"
-            }`}
-          >
-            <MessageCircle size={14} />
-            Mode 2: Deskripsi & Cerita Minat (AI)
-          </button>
-        </div>
-
-        {/* PARAMETER CARD */}
-        <section className="mt-5 rounded-2xl border border-[#eceef3] bg-white p-7">
-          <div className="flex flex-col justify-between gap-4 border-b border-[#edf0f5] pb-5 md:flex-row md:items-center">
-            <div className="flex items-center gap-3">
-              <SlidersHorizontal
-                size={20}
-                className="text-[#a01f26]"
-              />
-
-              <div>
-                <h2 className="text-[16px] font-bold">
-                  Parameter Rencana Studi & Budget
-                </h2>
-
-                <p className="mt-0.5 text-[10px] text-[#77747a]">
-                  Atur batas beban SKS dan alokasi biaya UKT
-                  semester aktif Anda.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <span className="text-[10px] font-medium">
-                Target Semester:
+              <span className="rounded-full bg-[#ffe5e6] px-3 py-1 text-[8px] font-bold text-[#9c242a]">
+                MAHASISWA PORTAL
               </span>
+            </div>
 
-              <button
-                type="button"
-                className="flex min-w-[270px] items-center justify-between rounded-lg bg-[#eff4fc] px-4 py-2.5 text-[11px] font-medium"
-              >
-                Semester 8 (Genap 2024/2025)
-                <ChevronDown size={14} />
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 rounded-full bg-[#eef3fd] px-4 py-1.5 text-[10px] font-semibold">
+                <CalendarDays
+                  size={13}
+                  className="text-[#9b1d24]"
+                />
+                2024/2025 Ganjil
+              </div>
+
+              <Bell size={15} className="text-[#98171d]" />
+
+              <div className="flex items-center gap-3">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#b58a68] text-[10px] font-bold text-white">
+                  NS
+                </div>
+
+                <div>
+                  <p className="text-[11px] font-bold">
+                    Nadya Salsabila
+                  </p>
+                  <p className="text-[8px] text-[#7a7880]">
+                    NIM 2106721094
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main className="mx-auto max-w-[1440px] px-7 pb-5 pt-5">
+          {/* JUDUL */}
+          <div className="flex items-start justify-between gap-5">
+            <div>
+              <div className="flex items-center gap-2 text-[10px] font-medium text-[#a32930]">
+                <Sparkles size={12} />
+                PERENCANAAN STUDI CERDAS BERBASIS AI
+              </div>
+
+              <h1 className="mt-2 text-[27px] font-bold">
+                Generator Paket KRS Cerdas
+              </h1>
+
+              <p className="mt-1 max-w-[510px] text-[10px] leading-relaxed text-[#6e6d75]">
+                Dapatkan kombinasi rekomendasi paket mata kuliah
+                terbaik berdasarkan riwayat studi, prasyarat,
+                budget biaya kuliah, dan target SKS Anda.
+              </p>
+            </div>
+
+            <div className="flex overflow-hidden rounded-full bg-[#26364b] p-1">
+              <button className="flex items-center gap-2 rounded-full bg-[#a71920] px-4 py-1.5 text-[9px] font-semibold text-white">
+                <Sparkles size={11} />
+                Rekomendasi Paket KRS
+              </button>
+
+              <button className="flex items-center gap-2 px-4 py-1.5 text-[9px] text-white/80">
+                <History size={11} />
+                Riwayat Studi
               </button>
             </div>
           </div>
 
-          <div className="mt-7 grid gap-8 lg:grid-cols-2">
-            {/* SKS */}
-            <div>
-              <div className="flex items-end justify-between">
-                <p className="text-[13px] font-bold">
-                  Target Beban SKS
-                </p>
+          {/* MAHASISWA */}
+          <section className="mt-4 flex items-center justify-between rounded-2xl border bg-white p-4">
+            <div className="flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#b58a68] text-sm font-bold text-white">
+                NS
+              </div>
 
-                <p className="text-[11px]">
-                  <span className="text-[22px] font-bold text-[#a11e24]">
-                    {targetSks}
+              <div>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-[13px] font-bold">
+                    Nadya Salsabila
+                  </h2>
+
+                  <span className="rounded-full bg-[#ffe1e3] px-2 py-1 text-[8px] font-bold text-[#a52a30]">
+                    Mahasiswa Aktif
                   </span>
-                  <span className="ml-1 font-semibold">
-                    / Max 24 SKS
+                </div>
+
+                <p className="mt-1 text-[9px] text-[#6e6970]">
+                  NIM 2106721094 • S1 Ilmu Komputer
+                  <br />
+                  Fakultas Ilmu Komputer UI
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-3 gap-3">
+              <div className="min-w-[155px] rounded-xl bg-[#edf3ff] px-4 py-2.5">
+                <p className="text-[8px] uppercase text-[#7f828b]">
+                  Indeks Prestasi Kumulatif
+                </p>
+
+                <p className="mt-1 text-[18px] font-bold text-[#a31f25]">
+                  3.82
+                  <span className="text-[9px] font-medium text-[#656875]">
+                    {" "}
+                    / 4.00
                   </span>
                 </p>
               </div>
 
-              <input
-                type="range"
-                min={12}
-                max={24}
-                value={targetSks}
-                onChange={(e) =>
-                  setTargetSks(Number(e.target.value))
-                }
-                className="mt-5 h-1.5 w-full cursor-pointer accent-[#a51f25]"
-              />
-
-              <div className="mt-2 flex justify-between text-[9px] text-[#79757a]">
-                <span>12 SKS (Min. Riset)</span>
-                <span>18 SKS (Standar Skripsi)</span>
-                <span className="font-bold text-[#9c252b]">
-                  24 SKS (Maksimal Hak IPK)
-                </span>
-              </div>
-            </div>
-
-            {/* BUDGET */}
-            <div>
-              <div className="flex justify-between">
-                <p className="text-[13px] font-bold">
-                  Budget Biaya Semester / UKT
+              <div className="min-w-[140px] rounded-xl bg-[#edf3ff] px-4 py-2.5">
+                <p className="text-[8px] uppercase text-[#7f828b]">
+                  SKS Telah Lulus
                 </p>
 
-                <span className="text-[9px] text-[#77747a]">
-                  Tarif SKS: Rp 375.000 / SKS
-                </span>
+                <p className="mt-1 text-[18px] font-bold">
+                  124 / 144
+                </p>
+
+                <p className="text-[8px] font-semibold text-[#a22a31]">
+                  86.1% Kurikulum
+                </p>
               </div>
 
-              <div className="mt-3 flex items-center justify-between rounded-lg bg-[#edf3ff] px-5 py-3">
-                <span className="text-[13px] font-medium text-[#656772]">
-                  Rp &nbsp; 7.500.000
-                </span>
+              <div className="min-w-[140px] rounded-xl bg-[#fff5f3] px-4 py-2.5">
+                <p className="text-[8px] uppercase text-[#7f828b]">
+                  Beban Max Berhak
+                </p>
 
-                <span className="text-[10px] font-bold text-[#a31d23]">
-                  MAKSIMAL
-                </span>
+                <p className="mt-1 text-[18px] font-bold text-[#b12a30]">
+                  24 SKS
+                  <span className="text-[8px] font-medium">
+                    {" "}
+                    IPK ≥ 3.50
+                  </span>
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* MODE */}
+          <div className="mx-auto mt-4 flex max-w-[620px] rounded-xl bg-[#dce8fb] p-1">
+            <button
+              onClick={() => setMode(1)}
+              className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 text-[9px] font-semibold ${
+                mode === 1
+                  ? "bg-white text-[#a1272d]"
+                  : "text-[#565f70]"
+              }`}
+            >
+              <SlidersHorizontal size={12} />
+              Mode 1: Formulir Parameter Studi & Budget
+            </button>
+
+            <button
+              onClick={() => setMode(2)}
+              className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 text-[9px] font-semibold ${
+                mode === 2
+                  ? "bg-white text-[#a1272d]"
+                  : "text-[#565f70]"
+              }`}
+            >
+              <MessageCircle size={12} />
+              Mode 2: Deskripsi & Cerita Minat (AI)
+            </button>
+          </div>
+
+          {/* PARAMETER */}
+          <section className="mt-4 rounded-2xl border bg-white p-5">
+            <div className="flex items-center justify-between border-b pb-3">
+              <div className="flex items-center gap-3">
+                <SlidersHorizontal
+                  size={17}
+                  className="text-[#a01f26]"
+                />
+
+                <div>
+                  <h2 className="text-[14px] font-bold">
+                    Parameter Rencana Studi & Budget
+                  </h2>
+
+                  <p className="text-[8px] text-[#77747a]">
+                    Atur batas beban SKS dan alokasi biaya UKT.
+                  </p>
+                </div>
               </div>
 
-              <p className="mt-2 text-[9px] text-[#767178]">
-                Perkiraan tagihan normal untuk 20 SKS adalah
-                sekitar Rp 7.500.000 (BOP-B/UKT Fleksibel
-                Terbuka).
-              </p>
-            </div>
-          </div>
+              <div className="flex items-center gap-3">
+                <span className="text-[9px]">
+                  Target Semester:
+                </span>
 
-          <button
-            type="button"
-            className="mt-7 flex w-full items-center justify-center gap-2 rounded-lg bg-[#95151b] py-3.5 text-[11px] font-semibold text-white hover:bg-[#801116]"
-          >
-            <Zap size={14} fill="currentColor" />
-            Generate Rekomendasi Paket KRS
-          </button>
-        </section>
-
-        {/* RESULTS */}
-        <section className="mt-8">
-          <div className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
-            <div>
-              <p className="text-[10px] font-semibold tracking-wide text-[#9d282e]">
-                ❖ HASIL KOMPARASI SIMULASI AI
-              </p>
-
-              <h2 className="mt-1 text-[20px] font-bold">
-                3 Paket Rekomendasi Terpilih untuk Semester 8
-              </h2>
-
-              <p className="mt-1 text-[10px] text-[#77727a]">
-                Pilihlah salah satu skenario yang paling sejalan
-                dengan target waktu wisuda, komitmen magang, dan
-                alokasi finansial Anda.
-              </p>
+                <button className="flex min-w-[240px] items-center justify-between rounded-lg bg-[#eff4fc] px-4 py-2 text-[9px]">
+                  Semester 8 (Genap 2024/2025)
+                  <ChevronDown size={12} />
+                </button>
+              </div>
             </div>
 
-            <p className="text-[10px] text-[#77727a]">
-              <span className="mr-1 text-[#9b1e24]">●</span>
-              Terakhir diperbarui: Hari ini, 09:42 WIB
-            </p>
-          </div>
+            <div className="mt-4 grid grid-cols-2 gap-7">
+              <div>
+                <div className="flex items-end justify-between">
+                  <p className="text-[11px] font-bold">
+                    Target Beban SKS
+                  </p>
 
-          <div className="mt-7 grid gap-5 lg:grid-cols-3">
-            {packages.map((item) => (
-              <RecommendationCard
-                key={item.id}
-                data={item}
-              />
-            ))}
-          </div>
-        </section>
-      </main>
+                  <p className="text-[9px]">
+                    <span className="text-[18px] font-bold text-[#a11e24]">
+                      {targetSks}
+                    </span>
+                    {" / Max 24 SKS"}
+                  </p>
+                </div>
+
+                <input
+                  type="range"
+                  min={12}
+                  max={24}
+                  value={targetSks}
+                  onChange={(e) =>
+                    setTargetSks(Number(e.target.value))
+                  }
+                  className="mt-3 h-1.5 w-full accent-[#a51f25]"
+                />
+
+                <div className="mt-1 flex justify-between text-[7px]">
+                  <span>12 SKS (Min. Riset)</span>
+                  <span>18 SKS (Standar Skripsi)</span>
+                  <span className="font-bold text-[#9c252b]">
+                    24 SKS (Maksimal Hak IPK)
+                  </span>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between">
+                  <p className="text-[11px] font-bold">
+                    Budget Biaya Semester / UKT
+                  </p>
+
+                  <span className="text-[7px]">
+                    Tarif SKS: Rp 375.000 / SKS
+                  </span>
+                </div>
+
+                <div className="mt-2 flex items-center justify-between rounded-lg bg-[#edf3ff] px-4 py-2.5">
+                  <span className="text-[11px]">
+                    Rp 7.500.000
+                  </span>
+
+                  <span className="text-[8px] font-bold text-[#a31d23]">
+                    MAKSIMAL
+                  </span>
+                </div>
+
+                <p className="mt-1 text-[7px] text-[#767178]">
+                  Perkiraan tagihan normal untuk 20 SKS sekitar
+                  Rp 7.500.000.
+                </p>
+              </div>
+            </div>
+
+            <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-[#95151b] py-2.5 text-[9px] font-semibold text-white">
+              <Zap size={12} fill="currentColor" />
+              Generate Rekomendasi Paket KRS
+            </button>
+          </section>
+
+          {/* HASIL */}
+          <section className="mt-4">
+            <div className="flex items-end justify-between">
+              <div>
+                <p className="text-[9px] font-semibold text-[#9d282e]">
+                  ❖ HASIL KOMPARASI SIMULASI AI
+                </p>
+
+                <h2 className="mt-1 text-[18px] font-bold">
+                  3 Paket Rekomendasi Terpilih untuk Semester 8
+                </h2>
+
+                <p className="text-[8px] text-[#77727a]">
+                  Pilih skenario yang paling sesuai dengan target
+                  wisuda, magang, dan finansial Anda.
+                </p>
+              </div>
+
+              <p className="text-[8px] text-[#77727a]">
+                ● Terakhir diperbarui: Hari ini, 09:42 WIB
+              </p>
+            </div>
+
+            <div className="mt-4 grid grid-cols-3 gap-4">
+              {packages.map((item) => (
+                <RecommendationCard
+                  key={item.id}
+                  data={item}
+                />
+              ))}
+            </div>
+          </section>
+        </main>
+      </div>
     </div>
   );
 }
