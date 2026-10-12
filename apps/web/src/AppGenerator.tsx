@@ -1,4 +1,4 @@
-import KrsGeneratorPage from "./KrsGeneratorPage";
+import KrsGeneratorPage from "./pages/mahasiswa/KrsGeneratorPage";
 
 function AppGenerator() {
   return <KrsGeneratorPage />;
