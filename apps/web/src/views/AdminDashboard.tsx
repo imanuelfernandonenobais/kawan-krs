@@ -369,7 +369,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
               <span>Biaya Semester</span>
             </button>
 
-            <button
+            {/*
+<button
               onClick={() => setActiveMenu('users')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold transition cursor-pointer ${
                 activeMenu === 'users'
@@ -380,6 +381,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
               <Users className="w-4 h-4" />
               <span>User Management</span>
             </button>
+*/}
           </nav>
         </div>
 
