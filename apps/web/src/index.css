@@ -77,12 +77,12 @@
   --secondary-foreground: oklch(0.145 0 0);
 
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: oklch(0.51 0 0);
 
   --accent: oklch(0.971 0.013 17.4);
   --accent-foreground: oklch(0.397 0.141 25.7);
 
-  --destructive: oklch(0.583 0.239 28.5);
+  --destructive: oklch(0.52 0.2 28.5);
 
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
@@ -156,6 +156,8 @@
   }
   html {
     @apply font-sans;
+    /* Keep keyboard targets clear of sticky headers and the demo navigation dock. */
+    scroll-padding-block: 12rem 6rem;
   }
   body {
     @apply bg-background text-foreground antialiased;
