@@ -1,7 +1,10 @@
 import { createContext, useContext } from "react";
 import React, { useState } from "react";
 
+import { useFeedback } from "@/components/feedback-provider";
+
 export function useDosenFeatureState() {
+  const notify = useFeedback();
   const [searchQuery, setSearchQuery] = useState("");
 
   const [selectedStatus, setSelectedStatus] = useState<
@@ -44,7 +47,7 @@ export function useDosenFeatureState() {
       ...notes,
     ]);
     setNewNote("");
-    alert("Catatan bimbingan berhasil disimpan!");
+    notify("Catatan bimbingan berhasil disimpan!");
   };
 
   const students = [

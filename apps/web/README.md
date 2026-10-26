@@ -1,6 +1,6 @@
 # KawanKRS web
 
-React + TypeScript SPA built with Vite, Tailwind CSS, and TanStack Router.
+React + TypeScript SPA built with Vite, Tailwind CSS, TanStack Router, and shadcn/ui.
 
 ## Commands
 
@@ -36,6 +36,18 @@ The Vite router plugin runs before React and automatically generates routes and
 splits route components into chunks. The CLI also generates the tree before
 standalone typechecks and tests. Commit the generated tree with route changes;
 linting/formatting already exclude it. Keep reusable feature code outside `routes/`.
+
+## UI components
+
+- `src/components/ui/` contains source-owned components from the official `@shadcn` registry, using **Base UI / `base-nova`** and Lucide icons. Do not mix in Radix implementations.
+- Add components from `apps/web` with `pnpm dlx shadcn@latest add @shadcn/<component>`. Preview updates with `--dry-run` / `--diff`; preserve local accessibility changes.
+- Compose primitives in pages and feature components. Use built-in variants and semantic tokens from `src/index.css`; use `className` for layout, not bespoke control colors or typography. The muted foreground and destructive tokens are slightly darker to retain contrast on muted/tinted surfaces.
+- Keep real navigation as TanStack Router `Link` elements styled with `buttonVariants`. Use `NativeSelect` where native change events and form behavior must be preserved. Forms use `FieldGroup`, `Field`, and associated `FieldLabel` controls without changing their state-management architecture.
+- `ConfirmAction` composes `AlertDialog` for destructive prototype mutations. `FeedbackProvider` presents existing prototype notifications using `Dialog`; these notifications do not imply that an export, API action, or other placeholder feature was implemented.
+- Academic visualizations and chart data/graphics remain custom. The unimplemented AI description mode is disabled rather than exposed as an inert button. Demo pagination and other placeholder actions remain prototypes.
+- The slider forwards accessible names to its thumbs; preserve this customization when updating from the registry. Keep titles on dialogs, fallbacks on avatars, and accessible names on icon-only actions.
+
+`pnpm --filter web test` covers routing/authentication behavior plus labels, password visibility, consent, keyboard slider changes, controlled filters, collapsibles, feedback, and cancellation/confirmation of destructive actions.
 
 ## URLs
 

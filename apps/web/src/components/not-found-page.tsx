@@ -1,16 +1,32 @@
 import { Link } from "@tanstack/react-router";
 
+import { buttonVariants } from "@/components/ui/button";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyTitle,
+} from "@/components/ui/empty";
+
 export function NotFoundPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-4 px-6 text-center text-slate-800">
-      <h1 className="text-2xl font-bold">Halaman tidak ditemukan</h1>
-      <p>Alamat yang Anda buka tidak tersedia.</p>
-      <Link
-        to="/login"
-        className="rounded-lg bg-[#8b1818] px-4 py-2 font-semibold text-white"
-      >
-        Kembali ke halaman masuk
-      </Link>
+    <main className="flex min-h-screen items-center justify-center px-6">
+      <Empty>
+        <EmptyHeader>
+          <EmptyTitle>
+            <h1>Halaman tidak ditemukan</h1>
+          </EmptyTitle>
+          <EmptyDescription>
+            Alamat yang Anda buka tidak tersedia.
+          </EmptyDescription>
+        </EmptyHeader>
+        <EmptyContent>
+          <Link to="/login" className={buttonVariants()}>
+            Kembali ke halaman masuk
+          </Link>
+        </EmptyContent>
+      </Empty>
     </main>
   );
 }

@@ -10,9 +10,41 @@ import {
   AlertCircle,
 } from "lucide-react";
 
+import { useFeedback } from "@/components/feedback-provider";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardDescription,
+} from "@/components/ui/card";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/collapsible";
+import { Field, FieldLabel, FieldGroup } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import {
+  NativeSelect,
+  NativeSelectOption,
+} from "@/components/ui/native-select";
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "@/components/ui/table";
+
 import { useMahasiswaState } from "../state";
 
 export function RiwayatPage() {
+  const notify = useFeedback();
   const {
     openSemester,
     setOpenSemester,
@@ -27,659 +59,665 @@ export function RiwayatPage() {
     handleDeleteNilai,
   } = useMahasiswaState();
   return (
-    <main className="mx-auto mt-6 max-w-7xl space-y-6 px-4 sm:px-6 lg:px-8">
+    <main className="mx-auto mt-6 flex max-w-7xl flex-col gap-6 px-4 sm:px-6 lg:px-8">
       {/* Top Bio Card */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs">
-        <div className="flex flex-col items-start justify-between gap-6 border-b border-slate-100 pb-6 lg:flex-row lg:items-center">
+      <Card>
+        <CardHeader className="flex flex-col flex-wrap items-start justify-between gap-6 lg:flex-row lg:items-center">
           <div className="flex items-center gap-4">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-tr from-[#8b1818] to-rose-400 text-xl font-bold text-white shadow-xs">
-              <img
+            <Avatar className="size-16">
+              <AvatarImage
                 src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80"
                 alt="Nadya"
-                className="h-full w-full object-cover"
-                onError={(e) => {
-                  (e.target as HTMLElement).style.display = "none";
-                }}
               />
-              <span>NS</span>
-            </div>
+              <AvatarFallback>NS</AvatarFallback>
+            </Avatar>
             <div>
               <div className="flex flex-wrap items-center gap-2">
-                <h2 className="text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
-                  Nadya Salsabila
-                </h2>
-                <span className="rounded-md border border-red-200 bg-red-50 px-2 py-0.5 text-[10px] font-bold text-[#8b1818] uppercase">
-                  Cumlaude Track
-                </span>
-                <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-bold text-slate-700">
-                  Aktif Semester 7
-                </span>
+                <CardTitle>
+                  <h2>Nadya Salsabila</h2>
+                </CardTitle>
+                <Badge variant="secondary">Cumlaude Track</Badge>
+                <Badge variant="secondary">Aktif Semester 7</Badge>
               </div>
-              <p className="mt-1 text-xs text-slate-500">
+              <CardDescription>
                 NIM 2106721094 • S1 Ilmu Komputer (Angkatan 2021) •{" "}
-                <span className="font-semibold text-slate-700">🛡 Reguler</span>
-              </p>
-              <p className="mt-0.5 text-xs text-slate-500">
+                <span className="text-foreground font-semibold">🛡 Reguler</span>
+              </CardDescription>
+              <CardDescription>
                 👨‍🏫 Dosen Pembimbing Akademik:{" "}
-                <strong className="text-slate-800">
+                <strong className="text-foreground">
                   Prof. Dr. Ir. Wisnu Jatmiko, M.Eng.
                 </strong>
-              </p>
+              </CardDescription>
             </div>
           </div>
-
-          <button
+          <Button
             type="button"
             onClick={() =>
-              alert("Mengunduh ringkasan transkrip & jalur kelulusan PDF...")
+              notify("Mengunduh ringkasan transkrip & jalur kelulusan PDF...")
             }
-            className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-slate-200 px-3.5 py-2 text-xs font-bold text-slate-700 shadow-xs transition hover:bg-slate-50"
+            variant="outline"
           >
-            <Download className="h-3.5 w-3.5 text-slate-500" />
+            <Download data-icon="inline-start" />
             Unduh Ringkasan
-          </button>
-        </div>
-
-        {/* 5 Stats Cards Row */}
-        <div className="grid grid-cols-2 gap-3 pt-6 text-center sm:grid-cols-3 lg:grid-cols-5">
-          <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
-            <span className="block text-[9px] font-bold tracking-wider text-slate-400 uppercase">
-              IPK Kumulatif
-            </span>
-            <span className="mt-1 block text-xl font-black text-slate-900">
-              3.82{" "}
-              <span className="text-xs font-normal text-slate-400">/ 4.00</span>
-            </span>
-            <span className="mt-1 block text-[9px] font-bold text-emerald-600">
-              ★ Predikat Cumlaude
-            </span>
-          </div>
-
-          <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
-            <span className="block text-[9px] font-bold tracking-wider text-slate-400 uppercase">
-              SKS Telah Lulus
-            </span>
-            <span className="mt-1 block text-xl font-black text-slate-900">
-              124{" "}
-              <span className="text-xs font-normal text-slate-400">
-                / 144 SKS
+          </Button>
+        </CardHeader>
+        <CardContent>
+          {/* 5 Stats Cards Row */}
+          <div className="grid grid-cols-2 gap-3 pt-6 text-center sm:grid-cols-3 lg:grid-cols-5">
+            <div className="border-border bg-muted rounded-xl border p-3">
+              <span className="text-muted-foreground block text-[9px] font-bold tracking-wider uppercase">
+                IPK Kumulatif
               </span>
-            </span>
-            <span className="mt-1 block text-[9px] font-semibold text-slate-500">
-              86.1% Selesai
-            </span>
-          </div>
-
-          <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
-            <span className="block text-[9px] font-bold tracking-wider text-slate-400 uppercase">
-              Beban Sem. 7 (Aktif)
-            </span>
-            <span className="mt-1 block text-xl font-black text-[#8b1818]">
-              20 <span className="text-xs font-normal text-slate-600">SKS</span>
-            </span>
-            <span className="mt-1 block text-[9px] font-semibold text-slate-500">
-              5 Mata Kuliah
-            </span>
-          </div>
-
-          <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
-            <span className="block text-[9px] font-bold tracking-wider text-slate-400 uppercase">
-              Target Lulus
-            </span>
-            <span className="mt-1 block text-base font-black text-slate-900">
-              Jul / Agu 2025
-            </span>
-            <span className="mt-1 block text-[9px] font-semibold text-emerald-700">
-              Tepat Waktu (8 Sem)
-            </span>
-          </div>
-
-          <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
-            <span className="block text-[9px] font-bold tracking-wider text-slate-400 uppercase">
-              Sisa SKS Kurikulum
-            </span>
-            <span className="mt-1 block text-xl font-black text-emerald-700">
-              0{" "}
-              <span className="text-xs font-normal text-slate-500">
-                SKS Defisit
+              <span className="text-foreground mt-1 block text-xl font-black">
+                3.82{" "}
+                <span className="text-muted-foreground text-xs font-normal">
+                  / 4.00
+                </span>
               </span>
-            </span>
-            <span className="mt-1 block text-[9px] text-slate-400">
-              Tercukupi total 144 SKS
-            </span>
+              <span className="text-foreground mt-1 block text-[9px] font-bold">
+                ★ Predikat Cumlaude
+              </span>
+            </div>
+
+            <div className="border-border bg-muted rounded-xl border p-3">
+              <span className="text-muted-foreground block text-[9px] font-bold tracking-wider uppercase">
+                SKS Telah Lulus
+              </span>
+              <span className="text-foreground mt-1 block text-xl font-black">
+                124{" "}
+                <span className="text-muted-foreground text-xs font-normal">
+                  / 144 SKS
+                </span>
+              </span>
+              <span className="text-muted-foreground mt-1 block text-[9px] font-semibold">
+                86.1% Selesai
+              </span>
+            </div>
+
+            <div className="border-border bg-muted rounded-xl border p-3">
+              <span className="text-muted-foreground block text-[9px] font-bold tracking-wider uppercase">
+                Beban Sem. 7 (Aktif)
+              </span>
+              <span className="text-primary mt-1 block text-xl font-black">
+                20{" "}
+                <span className="text-muted-foreground text-xs font-normal">
+                  SKS
+                </span>
+              </span>
+              <span className="text-muted-foreground mt-1 block text-[9px] font-semibold">
+                5 Mata Kuliah
+              </span>
+            </div>
+
+            <div className="border-border bg-muted rounded-xl border p-3">
+              <span className="text-muted-foreground block text-[9px] font-bold tracking-wider uppercase">
+                Target Lulus
+              </span>
+              <span className="text-foreground mt-1 block text-base font-black">
+                Jul / Agu 2025
+              </span>
+              <span className="text-foreground mt-1 block text-[9px] font-semibold">
+                Tepat Waktu (8 Sem)
+              </span>
+            </div>
+
+            <div className="border-border bg-muted rounded-xl border p-3">
+              <span className="text-muted-foreground block text-[9px] font-bold tracking-wider uppercase">
+                Sisa SKS Kurikulum
+              </span>
+              <span className="text-foreground mt-1 block text-xl font-black">
+                0{" "}
+                <span className="text-muted-foreground text-xs font-normal">
+                  SKS Defisit
+                </span>
+              </span>
+              <span className="text-muted-foreground mt-1 block text-[9px]">
+                Tercukupi total 144 SKS
+              </span>
+            </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
       {/* Two Columns Grid */}
       <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
         {/* ================= LEFT COLUMN: RIWAYAT TRANSKRIP STUDI ================= */}
-        <div className="space-y-6">
-          <div className="space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-xs">
-            <div>
-              <h3 className="text-base font-extrabold text-slate-900">
-                Riwayat Transkrip Studi
-              </h3>
-              <p className="text-xs text-slate-500">
+        <div className="flex flex-col gap-6">
+          <Card>
+            <CardHeader className="">
+              <CardTitle>
+                <h3>Riwayat Transkrip Studi</h3>
+              </CardTitle>
+              <CardDescription>
                 Daftar perolehan nilai resmi dan simulasi mandiri mahasiswa
-              </p>
-            </div>
-
-            {/* Input / Perbarui Nilai Mandiri */}
-            <form
-              onSubmit={handleAddNilai}
-              className="space-y-3 rounded-xl border border-red-200 bg-red-50/40 p-4"
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs font-bold text-[#8b1818]">
-                  <span className="h-2 w-2 rounded-full bg-[#8b1818]"></span>
-                  Input / Perbarui Nilai Mandiri
-                </div>
-                <span className="rounded border border-red-200 bg-white px-2 py-0.5 text-[10px] font-bold tracking-wider text-[#8b1818] uppercase">
-                  Simulasi & Riwayat
-                </span>
-              </div>
-              <p className="text-[11px] text-slate-500">
-                Tambahkan capaian nilai semester untuk memperbarui proyeksi IPK
-                seketika.
-              </p>
-
-              <div className="grid grid-cols-1 gap-3 text-xs sm:grid-cols-2">
-                <div>
-                  <label className="mb-1 block text-[10px] font-bold text-slate-600 uppercase">
-                    Pilih Semester Target
-                  </label>
-                  <select className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none">
-                    <option>Semester 6 (Genap 2023/2024)</option>
-                    <option>Semester 7 (Ganjil 2024/2025)</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="mb-1 block text-[10px] font-bold text-slate-600 uppercase">
-                    Kode & Nama Mata Kuliah
-                  </label>
-                  <input
-                    type="text"
-                    value={inputMatkul}
-                    onChange={(e) => setInputMatkul(e.target.value)}
-                    placeholder="Contoh: CS320 Pembelajaran Mesin"
-                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-800 focus:outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-1 block text-[10px] font-bold text-slate-600 uppercase">
-                    Bobot SKS
-                  </label>
-                  <select
-                    value={inputSks}
-                    onChange={(e) => setInputSks(e.target.value)}
-                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none"
-                  >
-                    <option value="2">2 SKS</option>
-                    <option value="3">3 SKS</option>
-                    <option value="4">4 SKS</option>
-                    <option value="6">6 SKS</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="mb-1 block text-[10px] font-bold text-slate-600 uppercase">
-                    Nilai Huruf
-                  </label>
-                  <select
-                    value={inputNilai}
-                    onChange={(e) => setInputNilai(e.target.value)}
-                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none"
-                  >
-                    <option value="A">A (4.00)</option>
-                    <option value="A-">A- (3.70)</option>
-                    <option value="B+">B+ (3.30)</option>
-                    <option value="B">B (3.00)</option>
-                  </select>
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                className="flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-[#8b1818] py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-[#721313]"
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-6">
+              {/* Input / Perbarui Nilai Mandiri */}
+              <form
+                onSubmit={handleAddNilai}
+                className="border-border bg-muted/40 flex flex-col gap-3 rounded-xl border p-4"
               >
-                <span>Simpan Nilai</span>
-              </button>
-            </form>
+                <FieldGroup>
+                  <div className="flex items-center justify-between">
+                    <div className="text-primary flex items-center gap-2 text-xs font-bold">
+                      <span className="bg-primary size-2 rounded-full"></span>
+                      Input / Perbarui Nilai Mandiri
+                    </div>
+                    <Badge variant="secondary">Simulasi &amp; Riwayat</Badge>
+                  </div>
+                  <p className="text-muted-foreground text-[11px]">
+                    Tambahkan capaian nilai semester untuk memperbarui proyeksi
+                    IPK seketika.
+                  </p>
+                  <div className="grid grid-cols-1 gap-3 text-xs sm:grid-cols-2">
+                    <Field>
+                      <FieldLabel htmlFor="riwayat-page-field-1">
+                        Pilih Semester Target
+                      </FieldLabel>
+                      <NativeSelect
+                        id="riwayat-page-field-1"
+                        className="w-full"
+                      >
+                        <NativeSelectOption>
+                          Semester 6 (Genap 2023/2024)
+                        </NativeSelectOption>
+                        <NativeSelectOption>
+                          Semester 7 (Ganjil 2024/2025)
+                        </NativeSelectOption>
+                      </NativeSelect>
+                    </Field>
 
-            {/* Semester Accordion List */}
-            <div className="space-y-3">
-              {/* Semester 6 (Expanded Table) */}
-              <div className="overflow-hidden rounded-xl border border-slate-200">
-                <button
-                  type="button"
-                  onClick={() => setOpenSemester(openSemester === 6 ? null : 6)}
-                  className="flex w-full cursor-pointer items-center justify-between bg-white p-3.5 text-left transition hover:bg-slate-50"
+                    <Field>
+                      <FieldLabel htmlFor="riwayat-page-field-2">
+                        Kode &amp; Nama Mata Kuliah
+                      </FieldLabel>
+                      <Input
+                        id="riwayat-page-field-2"
+                        type="text"
+                        value={inputMatkul}
+                        onChange={(e) => setInputMatkul(e.target.value)}
+                        placeholder="Contoh: CS320 Pembelajaran Mesin"
+                        className="w-full"
+                      />
+                    </Field>
+
+                    <Field>
+                      <FieldLabel htmlFor="riwayat-page-field-3">
+                        Bobot SKS
+                      </FieldLabel>
+                      <NativeSelect
+                        id="riwayat-page-field-3"
+                        value={inputSks}
+                        onChange={(e) => setInputSks(e.target.value)}
+                        className="w-full"
+                      >
+                        <NativeSelectOption value="2">2 SKS</NativeSelectOption>
+                        <NativeSelectOption value="3">3 SKS</NativeSelectOption>
+                        <NativeSelectOption value="4">4 SKS</NativeSelectOption>
+                        <NativeSelectOption value="6">6 SKS</NativeSelectOption>
+                      </NativeSelect>
+                    </Field>
+
+                    <Field>
+                      <FieldLabel htmlFor="riwayat-page-field-4">
+                        Nilai Huruf
+                      </FieldLabel>
+                      <NativeSelect
+                        id="riwayat-page-field-4"
+                        value={inputNilai}
+                        onChange={(e) => setInputNilai(e.target.value)}
+                        className="w-full"
+                      >
+                        <NativeSelectOption value="A">
+                          A (4.00)
+                        </NativeSelectOption>
+                        <NativeSelectOption value="A-">
+                          A- (3.70)
+                        </NativeSelectOption>
+                        <NativeSelectOption value="B+">
+                          B+ (3.30)
+                        </NativeSelectOption>
+                        <NativeSelectOption value="B">
+                          B (3.00)
+                        </NativeSelectOption>
+                      </NativeSelect>
+                    </Field>
+                  </div>
+                  <Button type="submit" variant="default" className="w-full">
+                    <span>Simpan Nilai</span>
+                  </Button>
+                </FieldGroup>
+              </form>
+              {/* Semester Accordion List */}
+              <div className="flex flex-col gap-3">
+                {/* Semester 6 (Expanded Table) */}
+                <Collapsible
+                  className="border-border overflow-hidden rounded-xl border"
+                  open={openSemester === 6}
+                  onOpenChange={(open) => setOpenSemester(open ? 6 : null)}
                 >
+                  <CollapsibleTrigger
+                    render={
+                      <Button
+                        variant="secondary"
+                        className="h-auto w-full justify-between p-3.5 text-left whitespace-normal"
+                      />
+                    }
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="bg-muted text-foreground flex size-7 items-center justify-center rounded-lg text-xs font-black">
+                        6
+                      </span>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-foreground text-xs font-bold">
+                            Semester 6
+                          </h4>
+                          <Badge variant="secondary">Genap 2023/2024</Badge>
+                        </div>
+                        <p className="text-muted-foreground text-[10px]">
+                          20 SKS Diselesaikan • 6 Mata Kuliah
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="text-right">
+                        <span className="text-muted-foreground block text-[9px] font-bold uppercase">
+                          IPS Semester
+                        </span>
+                        <span className="text-primary text-xs font-black">
+                          3.80
+                        </span>
+                      </div>
+                      {openSemester === 6 ? (
+                        <ChevronUp data-icon="inline-start" />
+                      ) : (
+                        <ChevronDown data-icon="inline-start" />
+                      )}
+                    </div>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <div className="border-border bg-muted overflow-x-auto border-t p-3 text-xs">
+                      <Table className="w-full">
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Kode &amp; Mata Kuliah</TableHead>
+                            <TableHead className="text-center">SKS</TableHead>
+                            <TableHead className="text-center">Nilai</TableHead>
+                            <TableHead className="text-center">Bobot</TableHead>
+                            <TableHead className="text-right">Aksi</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {transkripSem6.map((course, idx) => (
+                            <TableRow key={idx}>
+                              <TableCell>
+                                <strong className="text-foreground block text-[11px]">
+                                  {course.code}
+                                </strong>
+                                <span className="text-muted-foreground text-[10px]">
+                                  {course.name}
+                                </span>
+                              </TableCell>
+                              <TableCell className="text-center">
+                                {course.sks}
+                              </TableCell>
+                              <TableCell className="text-center">
+                                {course.grade}
+                              </TableCell>
+                              <TableCell className="text-center">
+                                {course.weight}
+                              </TableCell>
+                              <TableCell className="text-right whitespace-nowrap">
+                                <Button
+                                  aria-label="Edit"
+                                  onClick={() => notify(`Edit ${course.name}`)}
+                                  variant="ghost"
+                                  size="icon"
+                                >
+                                  <Edit3 data-icon="inline-start" />
+                                </Button>
+                                <Button
+                                  aria-label="Hapus"
+                                  onClick={() => handleDeleteNilai(idx)}
+                                  variant="ghost"
+                                  size="icon"
+                                  className="ml-1"
+                                >
+                                  <Trash2 data-icon="inline-start" />
+                                </Button>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  </CollapsibleContent>
+                </Collapsible>
+
+                {/* Semester 5 */}
+                <div className="border-border bg-background flex items-center justify-between rounded-xl border p-3.5">
                   <div className="flex items-center gap-3">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 text-xs font-black text-slate-700">
-                      6
+                    <span className="bg-muted text-foreground flex size-7 items-center justify-center rounded-lg text-xs font-black">
+                      5
                     </span>
                     <div>
                       <div className="flex items-center gap-2">
-                        <h4 className="text-xs font-bold text-slate-900">
-                          Semester 6
+                        <h4 className="text-foreground text-xs font-bold">
+                          Semester 5
                         </h4>
-                        <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-600">
-                          Genap 2023/2024
-                        </span>
+                        <Badge variant="secondary">Ganjil 2023/2024</Badge>
                       </div>
-                      <p className="text-[10px] text-slate-400">
-                        20 SKS Diselesaikan • 6 Mata Kuliah
+                      <p className="text-muted-foreground text-[10px]">
+                        20 SKS Diselesaikan • 6 Mata Kuliah (Kecerdasan
+                        Artifisial, Jaringan Komputer, dll)
                       </p>
                     </div>
                   </div>
-
-                  <div className="flex items-center gap-2">
-                    <div className="text-right">
-                      <span className="block text-[9px] font-bold text-slate-400 uppercase">
-                        IPS Semester
-                      </span>
-                      <span className="text-xs font-black text-[#8b1818]">
-                        3.80
-                      </span>
-                    </div>
-                    {openSemester === 6 ? (
-                      <ChevronUp className="h-4 w-4 text-slate-400" />
-                    ) : (
-                      <ChevronDown className="h-4 w-4 text-slate-400" />
-                    )}
-                  </div>
-                </button>
-
-                {openSemester === 6 && (
-                  <div className="overflow-x-auto border-t border-slate-100 bg-slate-50 p-3 text-xs">
-                    <table className="w-full text-left">
-                      <thead>
-                        <tr className="border-b border-slate-200 pb-1 text-[10px] font-bold text-slate-400 uppercase">
-                          <th className="pb-2">Kode & Mata Kuliah</th>
-                          <th className="pb-2 text-center">SKS</th>
-                          <th className="pb-2 text-center">Nilai</th>
-                          <th className="pb-2 text-center">Bobot</th>
-                          <th className="pb-2 text-right">Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-slate-100">
-                        {transkripSem6.map((course, idx) => (
-                          <tr
-                            key={idx}
-                            className="transition hover:bg-slate-100/60"
-                          >
-                            <td className="py-2.5">
-                              <strong className="block text-[11px] text-slate-800">
-                                {course.code}
-                              </strong>
-                              <span className="text-[10px] text-slate-500">
-                                {course.name}
-                              </span>
-                            </td>
-                            <td className="py-2.5 text-center font-bold text-slate-700">
-                              {course.sks}
-                            </td>
-                            <td className="py-2.5 text-center font-bold text-emerald-700">
-                              {course.grade}
-                            </td>
-                            <td className="py-2.5 text-center text-slate-600">
-                              {course.weight}
-                            </td>
-                            <td className="py-2.5 text-right whitespace-nowrap">
-                              <button
-                                onClick={() => alert(`Edit ${course.name}`)}
-                                className="cursor-pointer p-1 text-slate-400 transition hover:text-slate-700"
-                              >
-                                <Edit3 className="h-3.5 w-3.5" />
-                              </button>
-                              <button
-                                onClick={() => handleDeleteNilai(idx)}
-                                className="ml-1 cursor-pointer p-1 text-slate-400 transition hover:text-red-700"
-                              >
-                                <Trash2 className="h-3.5 w-3.5" />
-                              </button>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
-              </div>
-
-              {/* Semester 5 */}
-              <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-3.5">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 text-xs font-black text-slate-700">
-                    5
-                  </span>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-xs font-bold text-slate-900">
-                        Semester 5
-                      </h4>
-                      <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] text-slate-600">
-                        Ganjil 2023/2024
-                      </span>
-                    </div>
-                    <p className="text-[10px] text-slate-400">
-                      20 SKS Diselesaikan • 6 Mata Kuliah (Kecerdasan
-                      Artifisial, Jaringan Komputer, dll)
-                    </p>
+                  <div className="text-right">
+                    <span className="text-muted-foreground block text-[9px] font-bold uppercase">
+                      IPS Semester
+                    </span>
+                    <span className="text-primary text-xs font-black">
+                      3.85
+                    </span>
                   </div>
                 </div>
-                <div className="text-right">
-                  <span className="block text-[9px] font-bold text-slate-400 uppercase">
-                    IPS Semester
-                  </span>
-                  <span className="text-xs font-black text-[#8b1818]">
-                    3.85
-                  </span>
-                </div>
-              </div>
 
-              {/* Semester 4 */}
-              <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-3.5">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 text-xs font-black text-slate-700">
-                    4
-                  </span>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-xs font-bold text-slate-900">
-                        Semester 4
-                      </h4>
-                      <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] text-slate-600">
-                        Genap 2022/2023
-                      </span>
+                {/* Semester 4 */}
+                <div className="border-border bg-background flex items-center justify-between rounded-xl border p-3.5">
+                  <div className="flex items-center gap-3">
+                    <span className="bg-muted text-foreground flex size-7 items-center justify-center rounded-lg text-xs font-black">
+                      4
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-foreground text-xs font-bold">
+                          Semester 4
+                        </h4>
+                        <Badge variant="secondary">Genap 2022/2023</Badge>
+                      </div>
+                      <p className="text-muted-foreground text-[10px]">
+                        22 SKS Diselesaikan • Desain Algoritma, Sistem Operasi,
+                        Grafika Komputer
+                      </p>
                     </div>
-                    <p className="text-[10px] text-slate-400">
-                      22 SKS Diselesaikan • Desain Algoritma, Sistem Operasi,
-                      Grafika Komputer
-                    </p>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-muted-foreground block text-[9px] font-bold uppercase">
+                      IPS Semester
+                    </span>
+                    <span className="text-primary text-xs font-black">
+                      3.90
+                    </span>
                   </div>
                 </div>
-                <div className="text-right">
-                  <span className="block text-[9px] font-bold text-slate-400 uppercase">
-                    IPS Semester
-                  </span>
-                  <span className="text-xs font-black text-[#8b1818]">
-                    3.90
-                  </span>
+
+                {/* Semester 3 */}
+                <div className="border-border bg-background flex items-center justify-between rounded-xl border p-3.5">
+                  <div className="flex items-center gap-3">
+                    <span className="bg-muted text-foreground flex size-7 items-center justify-center rounded-lg text-xs font-black">
+                      3
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-foreground text-xs font-bold">
+                          Semester 3
+                        </h4>
+                        <Badge variant="secondary">Ganjil 2022/2023</Badge>
+                      </div>
+                      <p className="text-muted-foreground text-[10px]">
+                        21 SKS Diselesaikan • Struktur Data &amp; Algoritma,
+                        Aljabar Linier
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-muted-foreground block text-[9px] font-bold uppercase">
+                      IPS Semester
+                    </span>
+                    <span className="text-primary text-xs font-black">
+                      3.75
+                    </span>
+                  </div>
+                </div>
+
+                {/* Semester 2 */}
+                <div className="border-border bg-background flex items-center justify-between rounded-xl border p-3.5">
+                  <div className="flex items-center gap-3">
+                    <span className="bg-muted text-foreground flex size-7 items-center justify-center rounded-lg text-xs font-black">
+                      2
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-foreground text-xs font-bold">
+                          Semester 2
+                        </h4>
+                        <Badge variant="secondary">Genap 2021/2022</Badge>
+                      </div>
+                      <p className="text-muted-foreground text-[10px]">
+                        21 SKS Diselesaikan • Matematika Diskret, Dasar
+                        Pemrograman 2, dll
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-muted-foreground block text-[9px] font-bold uppercase">
+                      IPS Semester
+                    </span>
+                    <span className="text-primary text-xs font-black">
+                      3.78
+                    </span>
+                  </div>
+                </div>
+
+                {/* Semester 1 */}
+                <div className="border-border bg-background flex items-center justify-between rounded-xl border p-3.5">
+                  <div className="flex items-center gap-3">
+                    <span className="bg-muted text-foreground flex size-7 items-center justify-center rounded-lg text-xs font-black">
+                      1
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-foreground text-xs font-bold">
+                          Semester 1
+                        </h4>
+                        <Badge variant="secondary">Ganjil 2021/2022</Badge>
+                      </div>
+                      <p className="text-muted-foreground text-[10px]">
+                        20 SKS Diselesaikan • Dasar Pemrograman 1, Kalkulus,
+                        Pengantar Sistem Digital
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-muted-foreground block text-[9px] font-bold uppercase">
+                      IPS Semester
+                    </span>
+                    <span className="text-primary text-xs font-black">
+                      3.85
+                    </span>
+                  </div>
                 </div>
               </div>
-
-              {/* Semester 3 */}
-              <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-3.5">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 text-xs font-black text-slate-700">
-                    3
-                  </span>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-xs font-bold text-slate-900">
-                        Semester 3
-                      </h4>
-                      <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] text-slate-600">
-                        Ganjil 2022/2023
-                      </span>
-                    </div>
-                    <p className="text-[10px] text-slate-400">
-                      21 SKS Diselesaikan • Struktur Data & Algoritma, Aljabar
-                      Linier
-                    </p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <span className="block text-[9px] font-bold text-slate-400 uppercase">
-                    IPS Semester
-                  </span>
-                  <span className="text-xs font-black text-[#8b1818]">
-                    3.75
-                  </span>
-                </div>
-              </div>
-
-              {/* Semester 2 */}
-              <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-3.5">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 text-xs font-black text-slate-700">
-                    2
-                  </span>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-xs font-bold text-slate-900">
-                        Semester 2
-                      </h4>
-                      <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] text-slate-600">
-                        Genap 2021/2022
-                      </span>
-                    </div>
-                    <p className="text-[10px] text-slate-400">
-                      21 SKS Diselesaikan • Matematika Diskret, Dasar
-                      Pemrograman 2, dll
-                    </p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <span className="block text-[9px] font-bold text-slate-400 uppercase">
-                    IPS Semester
-                  </span>
-                  <span className="text-xs font-black text-[#8b1818]">
-                    3.78
-                  </span>
-                </div>
-              </div>
-
-              {/* Semester 1 */}
-              <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-3.5">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 text-xs font-black text-slate-700">
-                    1
-                  </span>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-xs font-bold text-slate-900">
-                        Semester 1
-                      </h4>
-                      <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] text-slate-600">
-                        Ganjil 2021/2022
-                      </span>
-                    </div>
-                    <p className="text-[10px] text-slate-400">
-                      20 SKS Diselesaikan • Dasar Pemrograman 1, Kalkulus,
-                      Pengantar Sistem Digital
-                    </p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <span className="block text-[9px] font-bold text-slate-400 uppercase">
-                    IPS Semester
-                  </span>
-                  <span className="text-xs font-black text-[#8b1818]">
-                    3.85
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* ================= RIGHT COLUMN: JALUR KELULUSAN MAHASISWA ================= */}
-        <div className="space-y-6">
-          <div className="space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-xs">
-            <div>
-              <h3 className="text-base font-extrabold text-slate-900">
-                Jalur Kelulusan Mahasiswa
-              </h3>
-              <p className="text-xs text-slate-500">
-                Audit kurikulum & proyeksi penyelesaian studi tepat waktu
-              </p>
-            </div>
-
-            {/* Prospek Box */}
-            <div className="space-y-1 rounded-xl border border-emerald-200 bg-emerald-50 p-4">
-              <div className="flex items-center gap-2 text-xs font-bold text-emerald-900">
-                <ShieldCheck className="h-4 w-4 text-emerald-600" />
-                STATUS PROSPEK KELULUSAN: Sangat Tinggi (Predikat Cumlaude)
+        <div className="flex flex-col gap-6">
+          <Card>
+            <CardHeader className="">
+              <CardTitle>
+                <h3>Jalur Kelulusan Mahasiswa</h3>
+              </CardTitle>
+              <CardDescription>
+                Audit kurikulum &amp; proyeksi penyelesaian studi tepat waktu
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-6">
+              {/* Prospek Box */}
+              <div className="border-border bg-muted flex flex-col gap-1 rounded-xl border p-4">
+                <div className="text-foreground flex items-center gap-2 text-xs font-bold">
+                  <ShieldCheck className="text-foreground size-4" />
+                  STATUS PROSPEK KELULUSAN: Sangat Tinggi (Predikat Cumlaude)
+                </div>
+                <p className="text-foreground text-xs leading-relaxed">
+                  Berada pada trajectory unggul. Menyelesaikan 20 SKS pada
+                  semester 7 ini akan menggenapkan total 144 SKS syarat
+                  kelulusan tanpa ada tanggungan semester antara.
+                </p>
               </div>
-              <p className="text-xs leading-relaxed text-emerald-800">
-                Berada pada trajectory unggul. Menyelesaikan 20 SKS pada
-                semester 7 ini akan menggenapkan total 144 SKS syarat kelulusan
-                tanpa ada tanggungan semester antara.
-              </p>
-            </div>
-
-            {/* Progres SKS Kurikulum */}
-            <div className="space-y-2">
-              <div className="flex justify-between text-xs font-bold text-slate-700">
-                <span>Progres SKS Kurikulum</span>
-                <span className="text-[#8b1818]">144 / 144 SKS (100%)</span>
-              </div>
-              <div className="flex h-3 w-full overflow-hidden rounded-full bg-slate-100">
-                <div
-                  className="bg-[#8b1818]"
-                  style={{ width: "86.1%" }}
-                  title="124 SKS Lulus"
-                ></div>
-                <div
-                  className="bg-rose-400"
-                  style={{ width: "13.9%" }}
-                  title="20 SKS Berjalan"
-                ></div>
-              </div>
-              <div className="flex justify-between text-[10px] font-medium text-slate-400">
-                <span>• 124 SKS Lulus (86.1%)</span>
-                <span className="text-rose-700">• 20 SKS Berjalan (13.9%)</span>
-                <span>Target 144 SKS</span>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3 pt-2">
-                <div className="rounded-xl border border-slate-100 bg-slate-50 p-3 text-center">
-                  <span className="block text-[10px] font-bold text-slate-400 uppercase">
-                    Sisa Semester
+              {/* Progres SKS Kurikulum */}
+              <div className="flex flex-col gap-2">
+                <div className="text-foreground flex justify-between text-xs font-bold">
+                  <span>Progres SKS Kurikulum</span>
+                  <span className="text-primary">144 / 144 SKS (100%)</span>
+                </div>
+                <div className="bg-muted flex h-3 w-full overflow-hidden rounded-full">
+                  <div
+                    className="bg-primary"
+                    style={{ width: "86.1%" }}
+                    title="124 SKS Lulus"
+                  ></div>
+                  <div
+                    className="bg-rose-400"
+                    style={{ width: "13.9%" }}
+                    title="20 SKS Berjalan"
+                  ></div>
+                </div>
+                <div className="text-muted-foreground flex justify-between text-[10px] font-medium">
+                  <span>• 124 SKS Lulus (86.1%)</span>
+                  <span className="text-primary">
+                    • 20 SKS Berjalan (13.9%)
                   </span>
-                  <strong className="mt-0.5 block text-sm text-slate-800">
-                    1 Semester
-                  </strong>
-                  <span className="text-[10px] text-slate-500">
-                    Semester 8 (Feb-Jul 2025)
-                  </span>
+                  <span>Target 144 SKS</span>
                 </div>
 
-                <div className="rounded-xl border border-slate-100 bg-slate-50 p-3 text-center">
-                  <span className="block text-[10px] font-bold text-slate-400 uppercase">
-                    Kebutuhan SKS Sem 8
-                  </span>
-                  <strong className="mt-0.5 block text-sm text-emerald-700">
-                    0 - 4 SKS
-                  </strong>
-                  <span className="text-[10px] text-slate-500">
-                    Hanya Sidang/Publikasi
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Syarat Kelulusan S1 Fasilkom */}
-            <div className="space-y-2.5 pt-2">
-              <div className="flex items-center justify-between text-xs font-bold">
-                <span className="flex items-center gap-1.5 text-slate-800">
-                  <BookOpen className="h-3.5 w-3.5 text-[#8b1818]" />
-                  Syarat Kelulusan S1 Fasilkom
-                </span>
-                <span className="text-[10px] font-semibold text-slate-400">
-                  1 dari 2 Terpenuhi
-                </span>
-              </div>
-
-              <div className="flex items-start justify-between gap-2 rounded-xl border border-slate-100 bg-slate-50 p-3">
-                <div className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
-                  <div>
-                    <strong className="block text-xs text-slate-800">
-                      Jumlah SKS 144
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="border-border bg-muted rounded-xl border p-3 text-center">
+                    <span className="text-muted-foreground block text-[10px] font-bold uppercase">
+                      Sisa Semester
+                    </span>
+                    <strong className="text-foreground mt-0.5 block text-sm">
+                      1 Semester
                     </strong>
-                    <p className="text-[10px] text-slate-400">
-                      Tercukupi total 144 SKS pasca menyelesaikan semester 7 (20
-                      SKS)
-                    </p>
+                    <span className="text-muted-foreground text-[10px]">
+                      Semester 8 (Feb-Jul 2025)
+                    </span>
+                  </div>
+
+                  <div className="border-border bg-muted rounded-xl border p-3 text-center">
+                    <span className="text-muted-foreground block text-[10px] font-bold uppercase">
+                      Kebutuhan SKS Sem 8
+                    </span>
+                    <strong className="text-foreground mt-0.5 block text-sm">
+                      0 - 4 SKS
+                    </strong>
+                    <span className="text-muted-foreground text-[10px]">
+                      Hanya Sidang/Publikasi
+                    </span>
                   </div>
                 </div>
-                <span className="text-[10px] font-bold whitespace-nowrap text-emerald-700">
-                  124 / 144 SKS Lulus
-                </span>
               </div>
+              {/* Syarat Kelulusan S1 Fasilkom */}
+              <div className="flex flex-col gap-2.5 pt-2">
+                <div className="flex items-center justify-between text-xs font-bold">
+                  <span className="text-foreground flex items-center gap-1.5">
+                    <BookOpen className="text-primary size-3.5" />
+                    Syarat Kelulusan S1 Fasilkom
+                  </span>
+                  <span className="text-muted-foreground text-[10px] font-semibold">
+                    1 dari 2 Terpenuhi
+                  </span>
+                </div>
 
-              <div className="flex items-start justify-between gap-2 rounded-xl border border-amber-200 bg-amber-50/50 p-3">
-                <div className="flex items-start gap-2">
-                  <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
-                  <div>
-                    <strong className="block text-xs text-slate-800">
-                      Tugas Akhir / Skripsi (6 SKS)
-                    </strong>
-                    <p className="text-[10px] text-amber-800/80">
-                      Tahap Bimbingan Bab 3 & Pengumpulan Korpus Data Model AI
-                    </p>
+                <div className="border-border bg-muted flex items-start justify-between gap-2 rounded-xl border p-3">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="text-foreground mt-0.5 size-4 shrink-0" />
+                    <div>
+                      <strong className="text-foreground block text-xs">
+                        Jumlah SKS 144
+                      </strong>
+                      <p className="text-muted-foreground text-[10px]">
+                        Tercukupi total 144 SKS pasca menyelesaikan semester 7
+                        (20 SKS)
+                      </p>
+                    </div>
                   </div>
+                  <span className="text-foreground text-[10px] font-bold whitespace-nowrap">
+                    124 / 144 SKS Lulus
+                  </span>
                 </div>
-                <span className="text-[10px] font-bold whitespace-nowrap text-amber-700">
-                  Sedang Berjalan
-                </span>
-              </div>
-            </div>
 
-            {/* Catatan Konsultasi Dosen PA */}
-            <div className="space-y-3 rounded-xl border border-slate-200 bg-slate-50/70 p-4">
-              <div className="flex items-center justify-between text-xs">
-                <span className="flex items-center gap-1.5 font-bold text-slate-700">
-                  💬 Catatan Konsultasi Dosen PA
-                </span>
-                <span className="text-[10px] text-slate-400">
-                  12 Oktober 2024
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#8b1818] text-xs font-bold text-white">
-                  WJ
-                </div>
-                <div>
-                  <strong className="block text-xs leading-tight text-slate-900">
-                    Prof. Dr. Ir. Wisnu Jatmiko, M.Eng.
-                  </strong>
-                  <span className="text-[10px] text-slate-500">
-                    Guru Besar Fasilkom UI • Dosen PA
+                <div className="border-border bg-muted/50 flex items-start justify-between gap-2 rounded-xl border p-3">
+                  <div className="flex items-start gap-2">
+                    <AlertCircle className="text-foreground mt-0.5 size-4 shrink-0" />
+                    <div>
+                      <strong className="text-foreground block text-xs">
+                        Tugas Akhir / Skripsi (6 SKS)
+                      </strong>
+                      <p className="text-foreground/80 text-[10px]">
+                        Tahap Bimbingan Bab 3 &amp; Pengumpulan Korpus Data
+                        Model AI
+                      </p>
+                    </div>
+                  </div>
+                  <span className="text-foreground text-[10px] font-bold whitespace-nowrap">
+                    Sedang Berjalan
                   </span>
                 </div>
               </div>
+              {/* Catatan Konsultasi Dosen PA */}
+              <div className="border-border bg-muted/70 flex flex-col gap-3 rounded-xl border p-4">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-foreground flex items-center gap-1.5 font-bold">
+                    💬 Catatan Konsultasi Dosen PA
+                  </span>
+                  <span className="text-muted-foreground text-[10px]">
+                    12 Oktober 2024
+                  </span>
+                </div>
 
-              <p className="border-l-2 border-[#8b1818] pl-3 text-xs leading-relaxed text-slate-600 italic">
-                "Pencapaian akademis Nadya sejauh ini sangat konsisten di zona
-                Cumlaude. Untuk semester 7 ini, fokus utama adalah mematangkan
-                pipeline eksperimen pada transformer model untuk skripsimu. Jika
-                draft bab 4 dapat diselesaikan di Desember, kamu siap mendaftar
-                sidang perdana di bulan Mei/Juni 2025."
-              </p>
+                <div className="flex items-center gap-2.5">
+                  <Avatar>
+                    <AvatarFallback>WJ</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <strong className="text-foreground block text-xs leading-tight">
+                      Prof. Dr. Ir. Wisnu Jatmiko, M.Eng.
+                    </strong>
+                    <span className="text-muted-foreground text-[10px]">
+                      Guru Besar Fasilkom UI • Dosen PA
+                    </span>
+                  </div>
+                </div>
 
-              <div className="flex items-center justify-between pt-1 text-xs">
-                <span className="rounded border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-700">
-                  ✓ Disetujui untuk Akselerasi Skripsi
-                </span>
-                <a
-                  href="#"
-                  onClick={(e) => e.preventDefault()}
-                  className="text-[11px] font-bold text-[#8b1818] hover:underline"
-                >
-                  Lihat Log Bimbingan →
-                </a>
+                <p className="border-primary text-muted-foreground border-l-2 pl-3 text-xs leading-relaxed italic">
+                  "Pencapaian akademis Nadya sejauh ini sangat konsisten di zona
+                  Cumlaude. Untuk semester 7 ini, fokus utama adalah mematangkan
+                  pipeline eksperimen pada transformer model untuk skripsimu.
+                  Jika draft bab 4 dapat diselesaikan di Desember, kamu siap
+                  mendaftar sidang perdana di bulan Mei/Juni 2025."
+                </p>
+
+                <div className="flex items-center justify-between pt-1 text-xs">
+                  <Badge variant="secondary">
+                    ✓ Disetujui untuk Akselerasi Skripsi
+                  </Badge>
+                  <a
+                    href="#"
+                    onClick={(e) => e.preventDefault()}
+                    className="text-primary text-[11px] font-bold hover:underline"
+                  >
+                    Lihat Log Bimbingan →
+                  </a>
+                </div>
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </main>

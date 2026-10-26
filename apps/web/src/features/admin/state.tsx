@@ -278,7 +278,7 @@ export function useAdminFeatureState() {
       user: "Security Bot Shield",
       role: "Automated Daemon",
       initials: "BOT",
-      icon: <Bot className="h-4 w-4 text-amber-700" />,
+      icon: <Bot className="text-foreground size-4" />,
       avatarBg: "bg-amber-100 text-amber-800",
       actionTitle: "Rate Limit Triggered",
       actionDesc:
@@ -292,7 +292,7 @@ export function useAdminFeatureState() {
       user: "Security Vault Daemon",
       role: "System Security Service",
       initials: "SEC",
-      icon: <Key className="h-4 w-4 text-slate-700" />,
+      icon: <Key className="text-foreground size-4" />,
       avatarBg: "bg-slate-200 text-slate-800",
       actionTitle: "API Key Revocation",
       actionDesc:

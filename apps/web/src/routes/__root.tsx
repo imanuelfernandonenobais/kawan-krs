@@ -1,5 +1,6 @@
 import { createRootRoute, HeadContent, Outlet } from "@tanstack/react-router";
 
+import { FeedbackProvider } from "../components/feedback-provider";
 import { NotFoundPage } from "../components/not-found-page";
 import { RoleSwitcher } from "../components/role-switcher";
 
@@ -11,10 +12,12 @@ export const Route = createRootRoute({
 
 function RootLayout() {
   return (
-    <div className="relative min-h-screen bg-[#f8fafc]">
+    <div className="bg-muted/50 relative min-h-screen">
       <HeadContent />
-      <Outlet />
-      <RoleSwitcher />
+      <FeedbackProvider>
+        <Outlet />
+        <RoleSwitcher />
+      </FeedbackProvider>
     </div>
   );
 }

@@ -6,7 +6,7 @@ export function DosenLayout() {
   const state = useDosenFeatureState();
   return (
     <DosenStateContext value={state}>
-      <div className="min-h-screen bg-[#f8fafc] pb-16 font-sans text-slate-800">
+      <div className="bg-muted/50 text-foreground min-h-screen pb-16 font-sans">
         <Outlet />
       </div>
     </DosenStateContext>
