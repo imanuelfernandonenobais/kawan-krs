@@ -1,7 +1,10 @@
 import { createContext, useContext } from "react";
 import React, { useState } from "react";
 
+import { useFeedback } from "@/components/feedback-provider";
+
 export function useMahasiswaFeatureState() {
+  const notify = useFeedback();
   const [targetSks, setTargetSks] = useState(20);
 
   const [budget, setBudget] = useState("7.500.000");
@@ -80,7 +83,7 @@ export function useMahasiswaFeatureState() {
       },
     ]);
     setInputMatkul("");
-    alert("Nilai mata kuliah berhasil disimpan ke simulasi transkrip!");
+    notify("Nilai mata kuliah berhasil disimpan ke simulasi transkrip!");
   };
 
   const handleDeleteNilai = (index: number) => {
