@@ -7,6 +7,8 @@ import {
   UserPlus,
 } from "lucide-react";
 
+import { buttonVariants } from "@/components/ui/button";
+
 const demoViews = [
   {
     role: "login",
@@ -61,9 +63,9 @@ export function RoleSwitcher() {
   return (
     <aside
       aria-label="Demo Role Switcher"
-      className="fixed right-4 bottom-4 z-50 flex items-center gap-1.5 rounded-full border border-slate-700/50 bg-slate-900/90 p-1.5 text-xs text-white shadow-2xl backdrop-blur-md"
+      className="border-border bg-popover text-popover-foreground fixed right-4 bottom-4 z-40 flex max-w-[calc(100%-2rem)] flex-wrap items-center gap-1.5 rounded-xl border p-1.5 text-xs shadow-xl"
     >
-      <span className="hidden border-r border-slate-700 px-3 py-1 text-[10px] font-bold tracking-widest text-slate-400 uppercase md:inline-block">
+      <span className="border-border text-muted-foreground hidden border-r px-3 py-1 text-[10px] font-bold tracking-widest uppercase md:inline-block">
         Demo Mode
       </span>
       {demoViews.map(({ role, to, label, title, icon: Icon }) => (
@@ -71,16 +73,12 @@ export function RoleSwitcher() {
           key={role}
           to={to}
           activeOptions={{ exact: true }}
-          className={`flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 font-semibold transition ${
-            currentView === role
-              ? "bg-[#8b1818] text-white shadow-sm"
-              : "text-slate-300 hover:bg-slate-800 hover:text-white"
-          }`}
           title={title}
+          className={buttonVariants({
+            variant: currentView === role ? "default" : "ghost",
+          })}
         >
-          <Icon
-            className={`h-3.5 w-3.5${role === "superadmin" ? " text-rose-400" : ""}`}
-          />
+          <Icon data-icon="inline-start" />
           <span className="hidden sm:inline">{label}</span>
         </Link>
       ))}
