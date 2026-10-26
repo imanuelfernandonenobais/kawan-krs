@@ -151,8 +151,12 @@ describe("nested navigation and layout state", () => {
     );
     fireEvent.change(search, { target: { value: "CS101" } });
     const row = screen.getByRole("row", { name: /CS101/ });
-    // Existing prototype row actions are icon-only: edit, then delete.
-    fireEvent.click(within(row).getAllByRole("button")[1]);
+    fireEvent.click(within(row).getByRole("button", { name: "Hapus" }));
+    const confirmation = await screen.findByRole("alertdialog");
+    fireEvent.click(
+      within(confirmation).getByRole("button", { name: "Hapus" })
+    );
+    await waitFor(() => expect(screen.queryByRole("alertdialog")).toBeNull());
     await act(async () => {
       await router.navigate({ to: "/admin/biaya" });
     });
@@ -162,7 +166,7 @@ describe("nested navigation and layout state", () => {
     );
     expect(screen.getByDisplayValue("CS101")).toBeTruthy();
     expect(screen.queryByRole("row", { name: /CS101/ })).toBeNull();
-    const nav = screen.getByRole("navigation");
+    const nav = screen.getByRole("navigation", { name: "Navigasi utama" });
     expect(
       within(nav)
         .getByRole("link", { name: "Mata Kuliah" })
