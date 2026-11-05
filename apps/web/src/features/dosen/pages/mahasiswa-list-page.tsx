@@ -327,20 +327,17 @@ export function MahasiswaListPage() {
         {/* Student Cards Grid (3 Columns) */}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {filteredStudents.map((student) => (
-            <Card key={student.id} className="justify-between">
+            <Card
+              data-kawan-dosen-card="true"
+              data-kawan-dosen-status={student.status}
+              key={student.id}
+              className="justify-between"
+            >
               <CardContent className="flex flex-col gap-4">
                 <div>
                   <div className="mb-3 flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <Avatar className="size-11">
-                        <AvatarFallback>
-                          {student.name
-                            .split(" ")
-                            .map((n) => n[0])
-                            .slice(0, 2)
-                            .join("")}
-                        </AvatarFallback>
-                      </Avatar>
+                      <DosenFotoProfil name={student.name} />
                       <div>
                         <h3 className="text-foreground text-sm leading-snug font-bold">
                           {student.name}
@@ -355,6 +352,7 @@ export function MahasiswaListPage() {
                     </div>
 
                     <Badge
+                      data-kawan-dosen-badge="true"
                       variant={
                         student.statusType === "needs-help"
                           ? "outline"
@@ -421,7 +419,10 @@ export function MahasiswaListPage() {
                     </div>
                   )}
 
-                  <div className="border-border bg-muted text-muted-foreground mb-4 rounded-xl border p-2.5 text-[11px]">
+                  <div
+                    data-kawan-dosen-note="true"
+                    className="border-border bg-muted text-muted-foreground mb-4 rounded-xl border p-2.5 text-[11px]"
+                  >
                     <strong className="text-foreground mb-1 block text-[10px] font-bold tracking-wider uppercase">
                       ! CATATAN TERAKHIR DOSEN PA:
                     </strong>
@@ -519,5 +520,42 @@ export function MahasiswaListPage() {
         </div>
       </footer>
     </>
+  );
+}
+
+/* Foto profil mahasiswa Dosen PA */
+function DosenFotoProfil({ name }: { name: string }) {
+  const photos: Record<string, string> = {
+    "Nadya Salsabila":
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop",
+    "Clarissa Kusuma":
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&h=120&fit=crop",
+    "Alya Wahyudi":
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop",
+  };
+
+  const initials = name
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
+  const photo = photos[name];
+
+  return (
+    <div className="relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-rose-200 bg-rose-50 text-xs font-semibold text-rose-700">
+      <span>{initials}</span>
+      {photo && (
+        <img
+          src={photo}
+          alt={name}
+          className="absolute inset-0 size-full object-cover"
+          onError={(event) => {
+            event.currentTarget.style.display = "none";
+          }}
+        />
+      )}
+    </div>
   );
 }

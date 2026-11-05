@@ -65,85 +65,133 @@ export function RekomendasiPage() {
       </div>
 
       {/* Student Mini Profile Summary */}
-      <Card className="md:flex-row md:items-center md:justify-between">
-        <CardHeader className="flex flex-wrap items-center gap-3">
-          <Avatar className="size-12">
-            <AvatarImage
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
-              alt="Nadya"
-            />
-            <AvatarFallback>NS</AvatarFallback>
-          </Avatar>
-          <div>
-            <div className="flex items-center gap-2">
-              <CardTitle>
-                <h3>Nadya Salsabila</h3>
-              </CardTitle>
-              <Badge variant="secondary">Mahasiswa Aktif</Badge>
+      <Card className="gap-0 overflow-hidden rounded-2xl py-0 shadow-sm">
+        <div className="flex flex-col gap-5 p-5 lg:flex-row lg:items-center lg:justify-between">
+          {/* Identitas Mahasiswa */}
+          <div className="flex min-w-0 items-center gap-4">
+            <Avatar className="size-14 shrink-0">
+              <AvatarImage
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+                alt="Nadya Salsabila"
+              />
+              <AvatarFallback>NS</AvatarFallback>
+            </Avatar>
+
+            <div className="min-w-0 space-y-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <h3 className="text-foreground text-base font-bold">
+                  Nadya Salsabila
+                </h3>
+                <Badge variant="secondary">Mahasiswa Aktif</Badge>
+              </div>
+
+              <p className="text-muted-foreground text-xs">NIM 2106721094</p>
+              <p className="text-muted-foreground text-xs">S1 Ilmu Komputer</p>
+              <p className="text-muted-foreground text-xs">
+                Fakultas Ilmu Komputer UI
+              </p>
             </div>
-            <CardDescription>
-              NIM 2106721094 • S1 Ilmu Komputer • Fakultas Ilmu Komputer UI
-            </CardDescription>
           </div>
-        </CardHeader>
-        <CardContent>
-          <div className="grid w-full grid-cols-3 gap-3 text-center md:w-auto">
-            <div className="border-border bg-muted rounded-xl border p-2.5">
-              <span className="text-muted-foreground block text-[9px] font-bold tracking-wider uppercase">
-                Indeks Prestasi Kumulatif
+
+          {/* Statistik Akademik */}
+          <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-3 lg:w-[420px] lg:shrink-0">
+            {/* IPK */}
+            <div className="bg-muted/50 flex min-h-24 flex-col items-center justify-center rounded-xl border p-3 text-center">
+              <span className="text-muted-foreground text-[10px] leading-4 font-bold uppercase">
+                IPK
               </span>
-              <span className="text-foreground mt-0.5 block text-base font-black">
-                3.82{" "}
-                <span className="text-muted-foreground text-[10px] font-normal">
-                  / 4.00
-                </span>
+              <span className="text-foreground mt-1 text-xl font-black">
+                3.82
               </span>
+              <span className="text-muted-foreground text-xs">/ 4.00</span>
             </div>
-            <div className="border-border bg-muted rounded-xl border p-2.5">
-              <span className="text-muted-foreground block text-[9px] font-bold tracking-wider uppercase">
+
+            {/* SKS Lulus */}
+            <div className="bg-muted/50 flex min-h-24 flex-col items-center justify-center rounded-xl border p-3 text-center">
+              <span className="text-muted-foreground text-[10px] leading-4 font-bold uppercase">
                 SKS Telah Lulus
               </span>
-              <span className="text-foreground mt-0.5 block text-base font-black">
-                124 / 144{" "}
-                <span className="text-muted-foreground text-[10px] font-normal">
-                  SKS
-                </span>
+              <span className="text-foreground mt-1 text-xl font-black">
+                124 / 144
               </span>
-              <span className="text-foreground block text-[9px] font-bold">
+              <span className="text-muted-foreground text-[10px]">
                 86.1% Kurikulum
               </span>
             </div>
-            <div className="border-border bg-muted rounded-xl border p-2.5">
-              <span className="text-muted-foreground block text-[9px] font-bold tracking-wider uppercase">
-                Beban Max Berhak
+
+            {/* Maksimal SKS */}
+            <div className="bg-muted/50 flex min-h-24 flex-col items-center justify-center rounded-xl border p-3 text-center">
+              <span className="text-muted-foreground text-[10px] leading-4 font-bold uppercase">
+                Beban Maksimal
               </span>
-              <span className="text-primary mt-0.5 block text-base font-black">
+              <span className="text-primary mt-1 text-xl font-black">
                 24 SKS
               </span>
-              <span className="text-muted-foreground block text-[9px]">
+              <span className="text-muted-foreground text-[10px]">
                 IPK ≥ 3.50
               </span>
             </div>
           </div>
-        </CardContent>
+        </div>
       </Card>
 
       {/* Mode Switcher Tabs */}
-      <Tabs value="parameters">
+      <Tabs defaultValue="parameters">
         <TabsList
           aria-label="Mode rekomendasi"
-          className="h-auto w-full flex-col items-stretch sm:w-fit sm:flex-row"
+          className="mb-4 grid h-auto w-full max-w-[760px] grid-cols-1 gap-1 rounded-xl p-1 sm:grid-cols-2"
         >
-          <TabsTrigger value="parameters" className="whitespace-normal">
-            <Sliders data-icon="inline-start" />
-            Mode 1: Formulir Parameter Studi &amp; Budget
+          <TabsTrigger
+            value="parameters"
+            className="min-h-11 w-full justify-center gap-2 rounded-lg px-4 py-2 text-xs font-semibold whitespace-normal sm:text-sm sm:whitespace-nowrap"
+          >
+            <Sliders className="size-4 shrink-0" />
+            <span>Mode 1: Parameter Studi &amp; Budget</span>
           </TabsTrigger>
-          <TabsTrigger value="ai" disabled className="whitespace-normal">
-            <Sparkles data-icon="inline-start" />
-            Mode 2: Deskripsi &amp; Cerita Minat (AI)
+
+          <TabsTrigger
+            value="ai"
+            className="min-h-11 w-full justify-center gap-2 rounded-lg px-4 py-2 text-xs font-semibold whitespace-normal sm:text-sm sm:whitespace-nowrap"
+          >
+            <Sparkles className="size-4 shrink-0" />
+            <span>Mode 2: Cerita Minat (AI)</span>
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="parameters">
+        <TabsContent value="ai" className="mt-0">
+          <Card>
+            <CardHeader>
+              <CardTitle>Ceritakan Minat dan Rencana Studi</CardTitle>
+              <CardDescription>
+                Tuliskan minat, mata kuliah pilihan, serta tujuan akademik Anda.
+              </CardDescription>
+            </CardHeader>
+
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <label htmlFor="cerita-minat" className="text-sm font-medium">
+                  Cerita Minat Mahasiswa
+                </label>
+
+                <textarea
+                  id="cerita-minat"
+                  rows={5}
+                  placeholder="Contoh: Saya tertarik dengan AI dan pengembangan web. Saya ingin mengambil 20 SKS semester ini..."
+                  className="border-input bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-lg border p-3 text-sm outline-none focus-visible:ring-2"
+                />
+              </div>
+
+              <div className="bg-muted/50 rounded-lg border p-3">
+                <p className="text-muted-foreground text-xs leading-relaxed">
+                  Form cerita minat sudah dapat digunakan. Analisis dan
+                  pembuatan rekomendasi otomatis dengan AI belum terhubung ke
+                  backend. Gunakan Mode 1 untuk menghasilkan paket KRS dengan
+                  fitur rekomendasi yang sudah tersedia.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="parameters" className="mt-0">
           {/* Parameter Rencana Studi & Budget Card */}
           <Card>
             <CardHeader className="flex flex-col flex-wrap items-start justify-between gap-3 sm:flex-row sm:items-center">
@@ -254,7 +302,7 @@ export function RekomendasiPage() {
                 }
                 className="w-full"
               >
-                <span>⚡ Generate Rekomendasi Paket KRS</span>
+                <span>&#9889; Generate Rekomendasi Paket KRS</span>
               </Button>
             </CardFooter>
           </Card>
@@ -266,10 +314,10 @@ export function RekomendasiPage() {
         <div className="flex flex-col items-start justify-between gap-1 sm:flex-row sm:items-center">
           <div>
             <span className="text-primary block text-[10px] font-bold tracking-wider uppercase">
-              ✦ HASIL KOMPARASI SIMULASI AI
+              {"\u2726"} HASIL REKOMENDASI KRS
             </span>
             <h3 className="text-foreground text-base font-extrabold sm:text-lg">
-              3 Paket Rekomendasi Terpilih untuk Semester 8
+              3 Pilihan Paket KRS untuk Semester 8
             </h3>
             <p className="text-muted-foreground text-xs">
               Pilihlah salah satu skenario yang paling sejalan dengan target
@@ -286,14 +334,16 @@ export function RekomendasiPage() {
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
           {/* PAKET A - Optimal Graduation (FEATURED) */}
           <Card
+            data-kawan-paket-card="true"
             className={cn(
               "relative justify-between overflow-visible",
               selectedPlan === "A" && "ring-primary ring-2"
             )}
+            data-kawan-selected={selectedPlan === "A"}
           >
             <CardContent className="flex flex-col gap-4">
               <div className="bg-primary text-primary-foreground absolute -top-3 left-4 rounded-full px-2.5 py-0.5 text-[9px] font-bold tracking-wider uppercase">
-                ★ REKOMENDASI UTAMA • PALING OPTIMAL
+                {"\u2605"} REKOMENDASI UTAMA {"\u2022"} PALING OPTIMAL
               </div>
               <div>
                 <div className="mb-3 pt-2">
@@ -406,6 +456,7 @@ export function RekomendasiPage() {
             </CardContent>
             <CardFooter>
               <Button
+                data-kawan-paket="true"
                 type="button"
                 aria-label="Pilih Paket A"
                 aria-pressed={selectedPlan === "A"}
@@ -426,10 +477,12 @@ export function RekomendasiPage() {
 
           {/* PAKET B - Fokus Karir & Magang */}
           <Card
+            data-kawan-paket-card="true"
             className={cn(
               "relative justify-between overflow-visible",
               selectedPlan === "B" && "ring-primary ring-2"
             )}
+            data-kawan-selected={selectedPlan === "B"}
           >
             <CardContent className="flex flex-col gap-4">
               <div>
@@ -531,6 +584,7 @@ export function RekomendasiPage() {
             </CardContent>
             <CardFooter>
               <Button
+                data-kawan-paket="true"
                 type="button"
                 aria-label="Pilih Paket B"
                 aria-pressed={selectedPlan === "B"}
@@ -549,10 +603,12 @@ export function RekomendasiPage() {
 
           {/* PAKET C - Pengayaan Akademik */}
           <Card
+            data-kawan-paket-card="true"
             className={cn(
               "relative justify-between overflow-visible",
               selectedPlan === "C" && "ring-primary ring-2"
             )}
+            data-kawan-selected={selectedPlan === "C"}
           >
             <CardContent className="flex flex-col gap-4">
               <div>
@@ -654,6 +710,7 @@ export function RekomendasiPage() {
             </CardContent>
             <CardFooter>
               <Button
+                data-kawan-paket="true"
                 type="button"
                 aria-label="Pilih Paket C"
                 aria-pressed={selectedPlan === "C"}
@@ -708,7 +765,7 @@ export function RekomendasiPage() {
             <div className="border-border bg-muted flex flex-col gap-1 rounded-xl border p-3.5">
               <span className="text-foreground flex items-center gap-1.5 font-bold">
                 <DollarSign className="text-primary size-3.5" />
-                Efisiensi Finansial ± 10%
+                Efisiensi Finansial Â± 10%
               </span>
               <p className="text-muted-foreground text-[11px]">
                 Dengan simulasi 18 SKS, total estimasi beban biaya adalah{" "}

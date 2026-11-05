@@ -12,7 +12,13 @@ export function MahasiswaLayout() {
   const pathname = useLocation({ select: (location) => location.pathname });
   return (
     <MahasiswaStateContext value={state}>
-      <div className="bg-muted/50 text-foreground min-h-screen pb-16 font-sans">
+      <div
+        className="text-foreground min-h-screen pb-16 font-sans"
+        style={{
+          background:
+            "radial-gradient(circle at 10% 10%, rgba(168, 38, 43, 0.10), transparent 32%), linear-gradient(135deg, #FFF9FA 0%, #FCE7EB 50%, #FFF9FA 100%)",
+        }}
+      >
         {/* Top Header Navbar */}
         <header className="border-border bg-background sticky top-0 z-30 border-b shadow-xs">
           <div className="mx-auto flex min-h-16 max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">

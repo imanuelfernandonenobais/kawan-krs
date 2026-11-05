@@ -23,7 +23,10 @@ export function AdminLayout() {
     <AdminStateContext value={state}>
       <div className="bg-muted/50 text-foreground flex min-h-screen flex-col font-sans lg:flex-row">
         {/* Sidebar navigation */}
-        <aside className="bg-sidebar text-sidebar-foreground flex w-full shrink-0 flex-col justify-between shadow-xl lg:w-64">
+        <aside
+          data-kawan-admin-sidebar="true"
+          className="bg-sidebar text-sidebar-foreground flex w-full shrink-0 flex-col justify-between shadow-xl lg:w-64"
+        >
           <div>
             {/* Brand Logo Header */}
             <div className="border-sidebar-border flex items-center gap-3 border-b p-6">
@@ -95,7 +98,10 @@ export function AdminLayout() {
           </div>
 
           {/* Bottom Sidebar Widget */}
-          <div className="border-sidebar-border bg-sidebar-accent m-4 flex flex-col gap-3 rounded-2xl border p-4 text-xs">
+          <div
+            className="border-sidebar-border bg-sidebar-accent m-4 flex flex-col gap-3 rounded-2xl border p-4 text-xs"
+            data-kawan-admin-footer="true"
+          >
             <div>
               <span className="text-muted-foreground block text-[10px] font-bold tracking-wider uppercase">
                 Tahun Akademik

@@ -1,0 +1,377 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/inter";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: "Inter Variable", sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+
+  --primary: oklch(0.481 0.16 25.6);
+  --primary-foreground: oklch(0.985 0 0);
+
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.145 0 0);
+
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.51 0 0);
+
+  --accent: oklch(0.971 0.013 17.4);
+  --accent-foreground: oklch(0.397 0.141 25.7);
+
+  --destructive: oklch(0.52 0.2 28.5);
+
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.481 0.16 25.6);
+
+  --chart-1: oklch(0.481 0.16 25.6);
+  --chart-2: oklch(0.601 0.135 22);
+  --chart-3: oklch(0.715 0.097 19.7);
+  --chart-4: oklch(0.817 0.061 18.5);
+  --chart-5: oklch(0.397 0.141 25.7);
+
+  --radius: 0.625rem;
+
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.481 0.16 25.6);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.971 0.013 17.4);
+  --sidebar-accent-foreground: oklch(0.397 0.141 25.7);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.481 0.16 25.6);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+
+  --primary: oklch(0.776 0.086 19.2);
+  --primary-foreground: oklch(0.258 0.089 26);
+
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.715 0 0);
+
+  --accent: oklch(0.283 0.067 22.3);
+  --accent-foreground: oklch(0.885 0.059 18.3);
+
+  --destructive: oklch(0.702 0.189 22.2);
+
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.776 0.086 19.2);
+
+  --chart-1: oklch(0.776 0.086 19.2);
+  --chart-2: oklch(0.715 0.097 19.7);
+  --chart-3: oklch(0.601 0.135 22);
+  --chart-4: oklch(0.481 0.16 25.6);
+  --chart-5: oklch(0.873 0.045 18.1);
+
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.776 0.086 19.2);
+  --sidebar-primary-foreground: oklch(0.258 0.089 26);
+  --sidebar-accent: oklch(0.283 0.067 22.3);
+  --sidebar-accent-foreground: oklch(0.885 0.059 18.3);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.776 0.086 19.2);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    /* Keep keyboard targets clear of sticky headers and the demo navigation dock. */
+    scroll-padding-block: 12rem 6rem;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  ::selection {
+    @apply bg-chart-5 text-primary-foreground;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* Tombol pilihan paket KawanKRS */
+[data-kawan-paket="true"] {
+  background-color: #A8262B !important;
+  color: #FFFFFF !important;
+  border-color: #A8262B !important;
+}
+
+[data-kawan-paket="true"]:hover {
+  background-color: #8C1F24 !important;
+  color: #FFFFFF !important;
+}
+
+/* KAWAN KRS PREMIUM PACKAGE CARDS */
+[data-kawan-paket-card="true"] {
+  background: linear-gradient(
+    135deg,
+    #ffe8ec 0%,
+    #fff4f6 48%,
+    #ffffff 100%
+  ) !important;
+  box-shadow: 0 8px 24px rgba(140, 30, 45, 0.08);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+[data-kawan-paket-card="true"]:hover {
+  box-shadow: 0 12px 28px rgba(140, 30, 45, 0.14);
+  transform: translateY(-2px);
+}
+
+/* KAWANKRS PREMIUM MODE TABS */
+
+[role="tablist"][aria-label="Mode rekomendasi"] {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  width: 100% !important;
+  max-width: 760px;
+  height: auto !important;
+  gap: 8px !important;
+  padding: 5px !important;
+  margin-bottom: 16px !important;
+  border-radius: 14px !important;
+  border: 1px solid #f1d9de;
+  background: rgba(255, 255, 255, 0.65) !important;
+}
+
+[role="tablist"][aria-label="Mode rekomendasi"] [role="tab"] {
+  width: 100% !important;
+  min-width: 0;
+  min-height: 44px !important;
+  padding: 9px 12px !important;
+  border-radius: 10px !important;
+  background: #fff9fa !important;
+  color: #813943 !important;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: normal;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+[role="tablist"][aria-label="Mode rekomendasi"] [role="tab"]:is(
+  [aria-selected="true"],
+  [data-state="active"],
+  [data-active]:not([data-active="false"])
+) {
+  background: #a8262b !important;
+  color: #ffffff !important;
+  box-shadow: 0 3px 9px rgba(168, 38, 43, 0.15);
+}
+
+[role="tablist"][aria-label="Mode rekomendasi"] [role="tab"]:is(
+  [aria-selected="true"],
+  [data-state="active"],
+  [data-active]:not([data-active="false"])
+) svg {
+  color: #ffffff !important;
+}
+
+@media (max-width: 520px) {
+  [role="tablist"][aria-label="Mode rekomendasi"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* KAWANKRS PAKET PREMIUM SELECTED V2 */
+
+[data-kawan-paket-card="true"] {
+  background: linear-gradient(
+    150deg, #ffffff 0%, #fffafb 100%
+  ) !important;
+  border: 1.5px solid #ecd2d7 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 24px rgba(102,28,43,.10) !important;
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease,
+    transform .2s ease,
+    background .2s ease;
+}
+
+[data-kawan-paket-card="true"][data-kawan-selected="true"] {
+  background: linear-gradient(
+    150deg, #ffffff 0%, #ffe9ed 100%
+  ) !important;
+  border: 2px solid #ac2630 !important;
+  box-shadow:
+    0 12px 32px rgba(172,38,48,.20),
+    0 0 0 3px rgba(172,38,48,.09) !important;
+  transform: translateY(-2px);
+}
+
+[data-kawan-paket-card="true"]:hover:not(
+  [data-kawan-selected="true"]
+) {
+  border-color: #d78891 !important;
+  box-shadow: 0 10px 28px rgba(102,28,43,.15) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-kawan-paket-card="true"] {
+    transition: none;
+    transform: none !important;
+  }
+}
+
+/* KAWANKRS DOSEN PREMIUM BG */
+[data-kawan-dosen-bg="true"] {
+    min-height: 100vh;
+    background:
+      radial-gradient(
+        circle at 12% 10%,
+        rgba(168, 38, 43, 0.10),
+        transparent 35%
+      ),
+      linear-gradient(
+        135deg,
+        #FFF9FA 0%,
+        #F9E1E6 55%,
+        #FFF5F7 100%
+      ) !important;
+}
+
+/* KAWANKRS ADMIN RED SIDEBAR */
+[data-kawan-admin-sidebar="true"] {
+  background: linear-gradient(180deg, #b52a2f 0%, #9d1f24 100%) !important;
+  border-right: 1px solid #8d1b20 !important;
+  color: #ffffff !important;
+}
+
+[data-kawan-admin-sidebar="true"] * {
+  color: inherit;
+}
+
+[data-kawan-admin-sidebar="true"] .text-muted-foreground,
+[data-kawan-admin-sidebar="true"] .text-foreground\/70,
+[data-kawan-admin-sidebar="true"] .text-foreground\/60 {
+  color: rgba(255,255,255,0.78) !important;
+}
+
+[data-kawan-admin-sidebar="true"] a,
+[data-kawan-admin-sidebar="true"] button,
+[data-kawan-admin-sidebar="true"] [role="button"] {
+  color: #ffffff !important;
+}
+
+[data-kawan-admin-sidebar="true"] svg {
+  color: #ffffff !important;
+}
+
+[data-kawan-admin-sidebar="true"] [aria-current="page"],
+[data-kawan-admin-sidebar="true"] .bg-primary,
+[data-kawan-admin-sidebar="true"] .data-\[state\=active\]\:bg-primary[data-state="active"] {
+  background: rgba(255,255,255,0.14) !important;
+  color: #ffffff !important;
+  border-color: rgba(255,255,255,0.10) !important;
+}
+
+[data-kawan-admin-sidebar="true"] .border-border {
+  border-color: rgba(255,255,255,0.10) !important;
+}
+/* KAWANKRS ADMIN LOGO FIX */
+
+/* Ikon topi wisuda di dalam Sidebar Admin */
+[data-kawan-admin-sidebar="true"]
+svg.lucide-graduation-cap {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Kotak yang langsung membungkus ikon */
+[data-kawan-admin-sidebar="true"]
+*:has(> svg.lucide-graduation-cap) {
+  background: rgba(255,255,255,0.16) !important;
+  border: 1px solid rgba(255,255,255,0.22) !important;
+  border-radius: 12px !important;
+}
+
+/* Ikon navigasi lainnya */
+[data-kawan-admin-sidebar="true"] a svg {
+  color: #ffffff !important;
+  stroke: currentColor !important;
+  opacity: 1 !important;
+}

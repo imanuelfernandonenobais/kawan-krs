@@ -23,16 +23,23 @@ export function SuperAdminLayout() {
     <SuperAdminStateContext value={state}>
       <div className="bg-muted/50 text-foreground flex min-h-screen flex-col font-sans lg:flex-row">
         {/* Sidebar navigation */}
-        <aside className="bg-sidebar text-sidebar-foreground flex w-full shrink-0 flex-col justify-between shadow-xl lg:w-64">
+        <aside
+          data-kawan-superadmin-sidebar="true"
+          className="flex w-full shrink-0 flex-col justify-between text-white shadow-xl lg:w-64"
+          style={{
+            background: "linear-gradient(180deg, #B62930 0%, #98232A 100%)",
+            color: "#FFFFFF",
+          }}
+        >
           <div>
             {/* Brand Logo Header */}
-            <div className="border-sidebar-border flex items-center gap-3 border-b p-6">
-              <div className="border-sidebar-border bg-sidebar-accent rounded-xl border p-2 backdrop-blur-md">
-                <GraduationCap className="text-sidebar-foreground size-6" />
+            <div className="flex items-center gap-3 border-b border-white/20 p-6">
+              <div className="rounded-xl border border-white/20 bg-white/10 p-2 backdrop-blur-md">
+                <GraduationCap className="size-6 text-white" />
               </div>
               <div>
                 <h1 className="text-base font-bold tracking-tight">KawanKRS</h1>
-                <p className="text-sidebar-foreground text-[10px] font-semibold tracking-wider uppercase">
+                <p className="text-[10px] font-semibold tracking-wider text-white uppercase">
                   Admin Portal
                 </p>
               </div>
@@ -84,23 +91,26 @@ export function SuperAdminLayout() {
           </div>
 
           {/* Bottom Sidebar Widget */}
-          <div className="border-sidebar-border bg-sidebar-accent m-4 flex flex-col gap-3 rounded-2xl border p-4 text-xs">
+          <div
+            data-kawan-super-footer="true"
+            className="m-4 flex flex-col gap-3 rounded-2xl border border-white/20 bg-white/10 p-4 text-xs"
+          >
             <div>
               <span className="text-muted-foreground block text-[10px] font-bold tracking-wider uppercase">
                 Tahun Akademik
               </span>
-              <div className="text-sidebar-foreground mt-0.5 flex items-center gap-1.5 font-bold">
+              <div className="mt-0.5 flex items-center gap-1.5 font-bold text-white">
                 <span>2024/2025 Ganjil</span>
                 <span className="size-2 rounded-full bg-emerald-400"></span>
                 <Badge variant="secondary">Aktif</Badge>
               </div>
             </div>
 
-            <div className="border-sidebar-border flex items-center justify-between border-t pt-2">
+            <div className="flex items-center justify-between border-t border-white/20 pt-2">
               <a
                 href="#"
                 onClick={(e) => e.preventDefault()}
-                className="text-sidebar-foreground hover:text-sidebar-foreground flex items-center gap-1.5 text-[11px] transition"
+                className="flex items-center gap-1.5 text-[11px] text-white transition hover:text-white"
               >
                 <HelpCircle className="size-3.5" />
                 <span>Pusat Bantuan Akademik</span>

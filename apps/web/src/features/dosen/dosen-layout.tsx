@@ -6,7 +6,10 @@ export function DosenLayout() {
   const state = useDosenFeatureState();
   return (
     <DosenStateContext value={state}>
-      <div className="bg-muted/50 text-foreground min-h-screen pb-16 font-sans">
+      <div
+        data-kawan-dosen-bg="true"
+        className="bg-muted/50 text-foreground min-h-screen pb-16 font-sans"
+      >
         <Outlet />
       </div>
     </DosenStateContext>
